@@ -647,7 +647,7 @@
 var DatosCultivos;
  
   stylosSesiones();
-  document.getElementById('Agenda').style.display=agenda;
+  document.getElementById('Agenda')//.style.display=agenda;
   document.getElementById('Registrarse').style.display=registrarse;
   document.getElementById('IniciarSesion').style.display=iniciarSesion;
   document.getElementById('CerrarSesion').style.display=cerrarSesion;
@@ -673,7 +673,7 @@ var DatosCultivos;
                   }
                 })
                 .fail(function(){
-                  alertify.error('Error Al Contultar');
+                  //alertify.error('Error Al Contultar');
                 })
               });
 //////////////////////////////////////////////
@@ -1252,7 +1252,7 @@ function agregarCultivoSuper(){
 
   switch(idRegion){
     case 'amazonas': enviarCultivoSuper('1'); break;
-    case 'ndina': enviarCultivoSuper('2'); break;
+    case 'andina': enviarCultivoSuper('2'); break;
     case 'caribe': enviarCultivoSuper('3'); break;
     case 'orinoquia': enviarCultivoSuper('4'); break;
     case 'pacifica': enviarCultivoSuper('5'); break;
