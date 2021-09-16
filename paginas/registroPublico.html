@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- NO CACHE EN LOS BUSCADORES !-->
+        <meta charset="utf-8">     
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="Last-Modified" content="0">
+        <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+
+  <!-- LIBRERIAS BOOTSTRAP !-->
+    <script src="../framework/bootstrap/js/jquery-3.3.1.min.js"></script>
+      <script src="../framework/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../framework/bootstrap/css/bootstrap.min.css">
+
+  <script src="../framework/alertifyjs/alertify.js"></script>
+  <link rel="stylesheet" type="text/css" href="../framework/alertifyjs/css/alertify.css">
+  <link rel="stylesheet" type="text/css" href="../framework/alertifyjs/css/themes/default.css">
+
+  <!-- <script src='framework/fullcalendar/lib/jquery.min.js'></script> -->
+  <script src='../framework/fullcalendar/lib/moment.min.js'></script>
+  <script src='../framework/fullcalendar/fullcalendar.min.js'></script>
+  <link rel='stylesheet' href='../framework/fullcalendar/fullcalendar.min.css' />
+  <script src='../framework/fullcalendar/es.js'></script>
+
+<script src='../js/datos.js'></script>
+     <!-- Custom styles for this template -->
+    <link href="../css/one-page-wonder.min.css" rel="stylesheet">
+
+  <script src='../js/url_BD.js'></script>
+
+<style type="text/css">
+body#RegistroBody{background:url('../img/fondo.jpg');
+ background-repeat:no-repeat;
+ background-position:center; background-size:cover; padding:10px;
+  overflow-y:scroll;
+  }
+#formRegistro{
+
+ padding:60px 40px;
+ margin-top:80px;
+ -webkit-box-shadow: -5px 2px 62px 8px rgba(0,0,0,0.75);
+-moz-box-shadow: -5px 2px 62px 8px rgba(0,0,0,0.75);
+box-shadow: -5px 2px 62px 8px rgba(0,0,0,0.75);
+}
+img{ width:130px;
+  margin:auto;
+}
+h1{
+color:white;
+text-align:center;
+font-weight:bolder;
+margin-top:-20px;
+}
+label{font-size:18px; color:white;}
+button{
+
+-webkit-box-shadow: -5px 2px 62px 8px rgba(0,0,0,0.75);
+-moz-box-shadow: -5px 2px 62px 8px rgba(0,0,0,0.75);
+box-shadow: -5px 2px 62px 8px rgba(0,0,0,0.75);
+}
+</style>
+
+
+
+<title>Registro Público</title>
+</head>
+<body id="RegistroBody">
+
+
+<!--MENU--------------------------------->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" >
+    <div class="container">
+  <a class="navbar-brand" href="../index.html" >
+   <b> AGROAGENDA </b>
+  <!-- <img src="img/logo.png" alt="Los Angeles" width="1100" height="500"> -->
+  </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+  <div class="navbar-collapse collapse" id="navbarResponsive" style="">
+   
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html" id="Inicio">Inicio <span class="sr-only">(current)</span> </a>
+      </li>
+      
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administrador
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item " href="../pagesAdministrador/listarAgenda.html" id="Agenda">Agendas</a>
+          <a class="dropdown-item " href="../pagesAdministrador/gestionarUsuario.html" id="gestionarUsuario">Gestionar Usuario</a>
+          <a class="dropdown-item " href="../pagesAdministrador/gestionarExperiencias.html" id="gestionarExperiencias">Gestionar Experiencias</a>
+           <a class="dropdown-item " href="../pagesAdministrador/gestionarPlagas.php" id="gestionarPlagas">Gestionar Plagas</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Empleado
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="../pagesEmpleado/listarAgendaEmpleado.html" id="AgendaEmpleado">Agendas</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="../pagesAdministrador/redSocial.html" id="redSocial">Red Social</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="empresas.html" id="Empresas">Empresas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contacto.html" id="Contacto">Contacto</a>
+      </li>  
+
+                  <li class="nav-item">
+              <a class="nav-link" href="registroPublico.html" style="color: yellow" id="Registrarse">Registrarse</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html" style="color: yellow" id="IniciarSesion">Iniciar Sesión</a>
+            </li> 
+            <li class="nav-item">
+              <button type="button" class="btn btn-outline-light" id="CerrarSesion">Cerrar Sesión</button>
+            </li>  
+    </ul>
+
+  </div> 
+
+
+</div>
+</nav>
+<!--FIN MENU--------------------------------->
+
+<div class="container-fluid bg">
+  <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <div id="formRegistro">
+      <h1>Registro</h1>
+      <img class="img img-responsive rounded-circle mx-auto d-block" src="../img/login.gif">
+        <div class="form-group">
+          <label>Identificación</label>
+          <input type="number" id="txtIdentificacion" class="form-control form-control-lg rounded-0" placeholder="Ingrese el usuario..." required="Complete los campos" autofocus="">
+          <div class="invalid-feedback">Por favor ingresar usuario</div>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="txtContraseña" class="form-control form-control-lg rounded-0" placeholder="Ingrese la contraseña..." required="Complete los campos">
+          <div class="invalid-feedback">Por favor ingresar contraseña</div>
+        </div>
+
+                  <div class="form-row">
+                    <div class="col">
+                      <label >Nombres:</label>
+                      <input type="text" id="txtPriNombre" class="form-control form-control-lg rounded-0" placeholder="Primero..." required="Complete los campos">
+                    </div>
+                    <div class="col">
+                      <label >-</label>
+                      <div class="input-group clockpicker" data-autoclose="true"">
+                        <input type="text" id="txtSegNombre" class="form-control form-control-lg rounded-0" placeholder="Segundo..." required="Complete los campos">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="col">
+                      <label >Apellidos:</label>
+                      <input type="text" id="txtPriApellido" class="form-control form-control-lg rounded-0" placeholder="Primero..." required="Complete los campos">
+                    </div>
+                    <div class="col">
+                      <label >-</label>
+                      <div class="input-group clockpicker" data-autoclose="true"">
+                        <input type="text" id="txtSegApellido" class="form-control form-control-lg rounded-0" placeholder="Segundo..." required="Complete los campos">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="col">
+                        <label for="sel1">Sexo</label>
+                        <select style="height: 47px;" required="" class="form-control" id="txtSexo">
+                          <option value="" selected="selected" disabled="">Seleccionar</option>
+                          <option value="masculino" >Masculino</option>
+                          <option value="femenino" >Femenino</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                      <label >Edad</label>
+                      <div class="input-group clockpicker" data-autoclose="true"">
+                        <input type="number" id="txtEdad" class="form-control form-control-lg rounded-0"  required="Complete los campos">
+                      </div>
+                    </div>
+                  </div>
+            <br>
+        
+        <button  id="btnRegistroPublico" class="btn btn-success btn-lg float-right">Registro</button>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+  </div>
+</div>
+<!--/container-->
+<script type="text/javascript">
+
+stylosSesiones();
+  document.getElementById('Agenda').style.display=agenda;
+  document.getElementById('Registrarse').style.display=registrarse;
+  document.getElementById('IniciarSesion').style.display=iniciarSesion;
+  document.getElementById('CerrarSesion').style.display=cerrarSesion;
+  document.getElementById('navbarDropdown').style.display=menuAdministrador;
+  document.getElementById('navbarDropdown2').style.display=menuEmpleado;
+  
+var traerSexo = document.getElementById('txtSexo').value;
+
+//FUNCION QUE EJECUTA Y VALIDA
+$(document).ready(function() {
+  $('#btnRegistroPublico').click(function(){
+     if(($("#txtIdentificacion").val().length < 1) || ($("#txtPriNombre").val().length < 1) || ($("#txtSegNombre").val().length < 1) || ($("#txtPriApellido").val().length < 1) || ($("#txtSegApellido").val().length < 1) || ($("#txtSexo").val().length < 1) || ($("#txtEdad").val().length < 1) || ($("#txtContraseña").val().length < 1)) {
+
+    alertify.error("Rellene todos los campos");
+    return false;
+}
+else{
+
+    RecolectarDatosGUI();
+
+    EnviarInformacion('registroAdministrador', NuevoEvento);
+
+}
+   });
+});
+
+//FUNCIONES
+    function RecolectarDatosGUI(){
+
+
+     NuevoEvento = {
+      idUsuario:$('#txtIdentificacion').val(),
+      pNombre:$('#txtPriNombre').val(),
+      sNombre:$('#txtSegNombre').val(),
+      pApellido:$('#txtPriApellido').val(),
+      sApellido:$('#txtSegApellido').val(),
+      sexo:$('#txtSexo').val(),
+      edad:$('#txtEdad').val(),
+      tipoUsuario:"administrador",
+      password:$('#txtContraseña').val(),
+      
+    };
+
+  }
+  //ENVIAR INFORMACION A LA BASE DE DATOS
+  function EnviarInformacion(accion, objEvento){
+
+    $.ajax({
+      type:'POST',
+      url:RegistroBD+accion,
+      data: objEvento,
+      success: function(msg){
+        if(msg){
+           alertify.success("Registro Exitoso!!");
+        }
+      },
+      error:function(){
+        alertify.error("Registro Fallido :(");
+      }
+
+    });
+
+  }
+
+</script>
+
+
+</body>
+</html>
