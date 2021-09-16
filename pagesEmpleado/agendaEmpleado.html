@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- NO CACHE EN LOS BUSCADORES !-->
+        <meta charset="utf-8">     
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="Last-Modified" content="0">
+        <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+
+  <!-- LIBRERIAS BOOTSTRAP !-->
+    <script src="../framework/bootstrap/js/jquery-3.3.1.min.js"></script>
+      <script src="../framework/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../framework/bootstrap/css/bootstrap.min.css">
+  <script src="../framework/bootstrap/js/popper.min.js"></script>
+
+  <script src="../framework/alertifyjs/alertify.js"></script>
+  <link rel="stylesheet" type="text/css" href="../framework/alertifyjs/css/alertify.css">
+  <link rel="stylesheet" type="text/css" href="../framework/alertifyjs/css/themes/default.css">
+
+	<!-- <script src='framework/fullcalendar/lib/jquery.min.js'></script> -->
+	<script src='../framework/fullcalendar/lib/moment.min.js'></script>
+	<script src='../framework/fullcalendar/fullcalendar.min.js'></script>
+	<link rel='stylesheet' href='../framework/fullcalendar/fullcalendar.min.css' />
+  <script src='../framework/fullcalendar/es.js'></script>
+
+  <script src='../framework/bootstrap/js/bootstrap-clockpicker.js'></script>
+  <link rel="stylesheet" href="../framework/bootstrap/css/bootstrap-clockpicker.css">
+
+  <link rel="stylesheet" href="../css/footer.css">
+<script src="../js/datos.js"></script>
+
+     <!-- Custom styles for this template -->
+    <link href="../css/one-page-wonder.min.css" rel="stylesheet">
+    <script src='../js/url_BD.js'></script>
+
+	<style>
+  .bg-1 { 
+      background-color: #1abc9c;
+      color: #ffffff;
+  }
+  .bg-2 { 
+      background-color: #474e5d;
+      color: #ffffff;
+  }
+  .bg-3 { 
+      background-color: #ffffff;
+      color: #555555;
+  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+  }
+   /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
+    .fc th{
+    padding: 10px 0px;
+    vertical-align: middle;
+    background: #F2F2F2;
+    width: 3px;
+    height: 2px;
+  }
+    .fc td{
+    width: 3px;
+    height: 3px;
+  }
+  </style>
+
+	<script>
+
+    var IdAgenda=sessionStorage.getItem("4");
+    //SCRIPT DEL CALENDARIO
+		$(document).ready(function() {
+		  // page is now ready, initialize the calendar...
+      
+		  $('#calendario').fullCalendar({
+		    // put your options and callbacks here
+        header: {
+          left:   'today,prev,next',
+          center: 'title',
+          right:  'month,basicWeek,basicDay'
+        },
+
+   /*     customButtons:{
+          miBoton:{
+            text:"Boton 1",
+            click:function(){
+              alert();
+            }
+          }
+        },
+
+*/
+        //evento para ingresar la informacion al calendario
+        dayClick: function(date, jsEvent, view) {
+
+var FechaInicio = new Date();
+
+
+          //DESACTIVAR BOTONES AL AGREGAR
+        $('#btnAgregar').prop("disabled",false);
+        $('#btnModificar').prop("disabled",true);
+        $('#btnEliminar').prop("disabled",true);
+        
+
+        LimpiarFormulario();
+        $('#txtFecha').val(date.format());
+        $('#txtHora').val(FechaInicio.getHours()+":"+FechaInicio.getMinutes());
+        $('#modalEvento').modal();
+
+        
+
+       },
+             //ruta para capturar los datos en la base de datos
+              events:DatodF+IdAgenda,
+             
+              //evento para cuando se le de click a un evento en el calendario
+              eventClick:function (calEvent, jsEvent, view) {
+                  //DESHABILITAR BOTONES
+                  $('#btnAgregar').prop("disabled",true);
+                  $('#btnModificar').prop("disabled",false);
+                  $('#btnEliminar').prop("disabled",false);
+                  
+                //H5
+                  $('#tituloEventoModal').html(calEvent.title);
+                  //MOSTRAR LA INFORMACION DEL EVENTO EN LOS INPUT DEL MODAL
+
+                  $('#txtDescripcion').val(calEvent.descripcion);
+                  $('#txtID').val(calEvent.id);
+                  
+
+                  $('#txtTitulo').val(calEvent.title);
+                  
+                  $('#txtColor').val(calEvent.color);
+
+                  FechaHora = calEvent.start._i.split(" ");
+                  $('#txtFecha').val(FechaHora[0]);
+                  $('#txtHora').val(FechaHora[1]);
+
+                  $('#modalEvento').modal();
+              }
+
+		  });
+
+		});
+	</script>
+
+	<title>Agro Agenda</title>
+</head>
+<body>
+
+<!--MENU--------------------------------->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" >
+    <div class="container">
+  <a class="navbar-brand" href="index.html" >
+   <b> AGROAGENDA </b>
+  <!-- <img src="img/logo.png" alt="Los Angeles" width="1100" height="500"> -->
+  </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+  <div class="navbar-collapse collapse" id="navbarResponsive" style="">
+   
+     <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html" id="Inicio">Inicio <span class="sr-only">(current)</span> </a>
+      </li>
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Empleado
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="listarAgendaEmpleado.html" id="AgendaEmpleado">Agendas</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="../pagesAdministrador/redSocial.html" id="redSocial">Red Social</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="../paginas/empresas.html" id="Empresas">Empresas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../paginas/contacto.html" id="Contacto">Contacto</a>
+      </li>  
+
+                  <li class="nav-item">
+              <a class="nav-link" href="../paginas/registroPublico.html" style="color: yellow" id="Registrarse">Registrarse</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../paginas/login.html" style="color: yellow" id="IniciarSesion">Iniciar Sesión</a>
+            </li> 
+            <li class="nav-item">
+              <button type="button" onclick="CerrarSesion()" class="btn btn-outline-light" id="CerrarSesion">Cerrar Sesión</button>
+            </li>  
+    </ul>
+  </div> 
+
+
+</div>
+</nav>
+<!--FIN MENU--------------------------------->
+
+
+
+<br><br><br>
+
+
+<div class="container">
+
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header">
+        <a class="card-link" >
+          Nombre de la agenda seleccionada
+        </a>
+      </div>
+      <div id="collapseOne"  data-parent="#accordion">
+        <div class="card-body">
+          Descripción
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<br><br>
+
+<!--MOSTRAR CALENDARIO------------------->
+	<div class="container">
+
+      		<div class="row">
+      			<div class="col"></div>
+      				<div class="col-12">
+      					<div id="calendario"></div>
+      				</div>
+      			<div class="col"></div>
+      		</div>
+
+      <!-- Modal Agregar, Modificar, Eliminar -->
+      <div class="modal fade" id="modalEvento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tituloEventoModal">Actividad</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: none;">
+                  Id: <input type="text" style="display: none;" id="txtID" name="txtID"> <br/> 
+                </div>
+              
+              <form>
+                  <div class="form-row">
+                    <div class="col">
+                      <label  >Fecha Inicio:</label>
+                      <input type="date" id="txtFecha" class="form-control validate" name="txtFecha" >
+                    </div>
+                    <div class="col">
+                      <label >Hora Inicio:</label>
+                      <div class="input-group clockpicker" data-autoclose="true"">
+                        <input type="time" id="txtHora" class="form-control validate" value="05:00" >
+                      </div>
+                    </div>
+                  </div>
+
+                   <div class="form-row">
+                    <div class="col">
+                      <label  >Fecha Fin:</label>
+                      <input type="date" id="txtFechaFin" class="form-control validate" name="txtFechaFin" >
+                    </div>
+                    <div class="col">
+                      <label >Hora Fin:</label>
+                      <div class="input-group clockpicker" data-autoclose="true"">
+                        <input type="time" id="txtHoraFin" class="form-control validate" value="00:00">
+                      </div>
+                    </div>
+                    
+                  </div>
+
+                    <div class="form-group">
+                      <label >Color:</label>
+                      <input type="color" id="txtColor"  class="form-control validate" >
+                    </div>
+
+                  <br>
+
+                  <div class="form-group">
+                    <label >Actividad:</label>
+
+                        <select style="height: 47px;" required="" class="form-control" id="txtTitulo">
+                          <option value="" selected="" disabled="">Seleccionar</option>                    
+                        </select>
+
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Descripción:</label>
+                    <textarea class="form-control" disabled="" id="txtDescripcion" rows="3"></textarea>
+                  </div>
+
+             
+
+                </form>
+
+            </div>
+          
+              <div class="modal-footer">
+                <button type="button" id="btnAgregar" class="btn btn-success" >Agregar</button> 
+                <button type="button" id="btnModificar" class="btn btn-primary" >Modificar</button> <br>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" id="btnEliminar" class="btn btn-danger" >Borrar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+          
+          </div>
+        </div>
+      </div>
+      <!-- FIN Modal Modal Agregar, Modificar, Eliminar  -->
+
+</div>
+
+<br><br>
+ 
+ <!-- FOOTER ----------------   --> 
+<footer class="footer">
+  <div class="container text-center">
+  <p class="text-xs-center" > 
+
+  </p>
+  </div>
+</footer>
+
+<footer class="mainfooter" role="contentinfo">
+  
+  <div class="footer-middle">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Dirección</h4>
+          <address>
+                <ul class="list-unstyled">
+                  <li>
+                    Sincelejo (Sucre)<br>
+                    212  Street<br>
+                    Lawoma<br>
+                    735<br>
+                  </li>
+                  <li>
+                    Phone: 0
+                  </li>
+                </ul>
+              </address>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Popular Services</h4>
+          <ul class="list-unstyled">
+            <li><a href="#"></a></li>
+            <li><a href="#">Payment Center</a></li>
+            <li><a href="#">Contact Directory</a></li>
+            <li><a href="#">Forms</a></li>
+            <li><a href="#">News and Updates</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Website Information</h4>
+          <ul class="list-unstyled">
+            <li><a href="#">Website Tutorial</a></li>
+            <li><a href="#">Accessibility</a></li>
+            <li><a href="#">Disclaimer</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Webmaster</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Popular Departments</h4>
+          <ul class="list-unstyled">
+            <li><a href="#">Parks and Recreation</a></li>
+            <li><a href="#">Public Works</a></li>
+            <li><a href="#">Police Department</a></li>
+            <li><a href="#">Fire</a></li>
+            <li><a href="#">Mayor and City Council</a></li>
+            <li>
+              <a href="#"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!--<div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+         
+          <p class="text-xs-center" >&copy; Copyright 2018 - CECAR.  Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</footer>
+
+<footer class="footer">
+  <div class="container text-center">
+  <p class="text-xs-center" >&copy; Copyright 2018 - AGROAGENDA.  Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- FIN FOOTER -----------------------------------------------------------   -->
+
+<script >
+
+
+  stylosSesiones();
+  document.getElementById('AgendaEmpleado').style.display=agenda;
+  document.getElementById('Registrarse').style.display=registrarse;
+  document.getElementById('IniciarSesion').style.display=iniciarSesion;
+  document.getElementById('CerrarSesion').style.display=cerrarSesion;
+ // document.getElementById('navbarDropdown').style.display=menuAdministrador;
+  document.getElementById('navbarDropdown2').style.display=menuEmpleado;
+
+
+if(sessionStorage.getItem('3')=="administrador"){
+  }else if(sessionStorage.getItem('3')=="trabajador"){
+      //window.location.href="../index.html";
+  }else{
+    window.location.href="../index.html";
+  }
+
+  //EVENTOs PARA CADA BOTON DEL MODAL - EL CUAL AGREGARA LOS DATOS AL CALENDARIO ////////////
+  var NuevoEvento;
+  $('#btnAgregar').click(function(){
+    RecolectarDatosGUI();
+
+    EnviarInformacion('agregar', NuevoEvento);
+  });
+
+  $('#btnEliminar').click(function(){
+    RecolectarDatosGUI();
+
+    EnviarInformacion('eliminar', NuevoEvento);
+  });
+
+    $('#btnModificar').click(function(){
+    RecolectarDatosGUI();
+
+    EnviarInformacion('modificar', NuevoEvento);
+  });
+
+
+  function RecolectarDatosGUI(){
+
+    var combo = document.getElementById("txtTitulo");
+    var selected = combo.options[combo.selectedIndex].text;
+
+     NuevoEvento = {
+      id:$('#txtID').val(),
+      title:selected,
+      start:$('#txtFecha').val()+" "+$('#txtHora').val(),
+      color:$('#txtColor').val(),
+      descripcion:$('#txtDescripcion').val(),
+      textColor:"#FFFFFF",
+      end:$('#txtFechaFin').val()+" "+$('#txtHoraFin').val(),
+      idAgenda:IdAgenda
+
+    };
+
+  }
+  //ENVIAR INFORMACION A LA BASE DE DATOS
+  function EnviarInformacion(accion, objEvento){
+
+    $.ajax({
+      type:'POST',
+      url:EnventosPHP+accion,
+      data: objEvento,
+      success: function(msg){
+        if(msg){
+          $('#calendario').fullCalendar('refetchEvents');
+          $('#modalEvento').modal('toggle');
+           alertify.success("Operación Exitosa :)");
+        }
+      },
+      error:function(){
+        alertify.error("Operación Fallida :(");
+      }
+
+    });
+
+  }
+
+    //PARA EJECUTAR EL RELOJ PARA LA HORA
+  $('.clockpicker').clockpicker();
+
+//LIMPIAR LOS CAMPOS
+  function LimpiarFormulario(){
+                  $('#txtDescripcion').val('');
+                  $('#txtID').val('');
+                  $('#txtTitulo').val('');
+                  $('#txtColor').val('');
+  }
+
+
+  //LLENAR LISTA DE ACTIVIDADES/////////
+  $(document).ready(function() {
+
+          $.getJSON(consultarActividades+sessionStorage.getItem('4'), function(data) {
+
+            for (var i = 0; i < data.length; i++) {
+              $('#txtTitulo').append('<option value="'+data[i].idActividad+'" >'+data[i].nombreActividad+'</option>');
+            }
+          })
+          .fail(function(){
+            alertify.error('Error Al Contultar');
+          })
+
+    });
+
+$(document).ready(function() {
+  //// ----- LENAR COMENTARIOS DE LAS ACTIVIDADES ----//////
+          $("#txtTitulo").change(function() {
+           $.getJSON(consultarActividades+sessionStorage.getItem('4'), function(data) {
+            for (var i = 0; i < data.length; i++) {
+              if($("#txtTitulo").val()==data[i].idActividad){
+                $('#txtDescripcion').val(data[i].descripcionActividad);
+                
+                
+              }
+            }
+          })
+          .fail(function(){
+            alertify.error('Error Al Contultar');
+          })
+              });
+//------------------------------------------------------------//
+   });
+
+  //// FIN LLENAR SELECT DE ACRTIVIDADES ////////////
+
+
+ 
+</script>
+
+</body>
+</html>
