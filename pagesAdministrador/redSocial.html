@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- NO CACHE EN LOS BUSCADORES !-->
+        <meta charset="utf-8">
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="Last-Modified" content="0">
+        <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+
+
+ <!-- LIBRERIAS BOOTSTRAP !-->
+    <script src="../framework/bootstrap/js/jquery-3.3.1.min.js"></script>
+      <script src="../framework/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../framework/bootstrap/css/bootstrap.min.css">
+  <script src="../framework/bootstrap/js/popper.min.js"></script>
+  <script src='../js/datos.js'></script>
+  <script src="../framework/alertifyjs/alertify.js"></script>
+  <link rel="stylesheet" type="text/css" href="../framework/alertifyjs/css/alertify.css">
+  <link rel="stylesheet" type="text/css" href="../framework/alertifyjs/css/themes/default.css">
+
+  <!-- <script src='framework/fullcalendar/lib/jquery.min.js'></script> -->
+  <script src='../framework/fullcalendar/lib/moment.min.js'></script>
+  <script src='../framework/fullcalendar/fullcalendar.min.js'></script>
+  <link rel='stylesheet' href='../framework/fullcalendar/fullcalendar.min.css' />
+  <script src='../framework/fullcalendar/es.js'></script>
+
+  <script src='../framework/bootstrap/js/bootstrap-clockpicker.js'></script>
+  <link rel="stylesheet" href="../framework/bootstrap/css/bootstrap-clockpicker.css">
+
+  <link rel="stylesheet" href="../css/footer.css">
+<script src='../js/datos.js'></script>
+
+     <!-- Custom styles for this template -->
+    <link href="../css/one-page-wonder.min.css" rel="stylesheet">
+
+      <!-- URL BD -->
+    <script src='../js/url_BD.js'></script>
+
+
+
+	<style>
+  .bg-1 {
+      background-color: #1abc9c;
+      color: #ffffff;
+  }
+  .bg-2 {
+      background-color: #474e5d;
+      color: #ffffff;
+  }
+  .bg-3 {
+      background-color: #ffffff;
+      color: #555555;
+  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+  }
+   /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
+    .fc th{
+    padding: 10px 0px;
+    vertical-align: middle;
+    background: #F2F2F2;
+    width: 3px;
+    height: 2px;
+  }
+    .fc td{
+    width: 3px;
+    height: 3px;
+  }
+  </style>
+
+
+
+	<title>Agro Agenda</title>
+</head>
+<body>
+
+<!--MENU--------------------------------->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" >
+    <div class="container">
+  <a class="navbar-brand" href="index.html" >
+   <b> AGROAGENDA </b>
+  <!-- <img src="img/logo.png" alt="Los Angeles" width="1100" height="500"> -->
+  </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+  <div class="navbar-collapse collapse" id="navbarResponsive" style="">
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html" id="Inicio">Inicio <span class="sr-only">(current)</span> </a>
+      </li>
+      
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administrador
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item " href="listarAgenda.html" id="Agenda">Agendas</a>
+          <a class="dropdown-item " href="gestionarUsuario.html" id="gestionarUsuario">Gestionar Usuario</a>
+          <a class="dropdown-item " href="gestionarExperiencias.html" id="gestionarExperiencias">Gestionar Experiencias</a>
+          <a class="dropdown-item " href="gestionarPlagas.php" id="gestionarPlagas">Gestionar Plagas</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="redSocial.html" id="redSocial">Red Social</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="../paginas/empresas.html" id="Empresas">Empresas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../paginas/contacto.html" id="Contacto">Contacto</a>
+      </li>  
+
+                  <li class="nav-item">
+              <a class="nav-link" href="../paginas/registroPublico.html" style="color: yellow" id="Registrarse">Registrarse</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../paginas/login.html" style="color: yellow" id="IniciarSesion">Iniciar Sesión</a>
+            </li> 
+            <li class="nav-item">
+              <button type="button" onclick="CerrarSesion()" class="btn btn-outline-light" id="CerrarSesion">Cerrar Sesión</button>
+            </li>  
+    </ul>
+
+  </div>
+
+
+</div>
+</nav>
+<!--FIN MENU--------------------------------->
+
+
+
+<br>
+
+<div class="container-fluid">
+
+  
+    <h1 style="text-align: center;">Red Social</h1>
+    <hr>
+                  <div class="row">
+                    <div class="col-sm-4">
+                           <label for="sel1">1. Nombre de la Region:</label>
+                        <select style="height: 47px;" required="" class="form-control" id="txtNombreRegionRed">
+                          <option value="0" selected="" disabled="">Seleccionar opción</option>
+                          <option value="1" >Región Amazonas</option>
+                          <option value="2" >Región Andina</option>
+                          <option value="3" >Región  Caribe</option>
+                          <option value="4" >Región Orinoquia</option>
+                          <option value="5" >Región Pacifica</option>
+                        </select>
+
+                    </div>
+                    <div class="col-sm-4">
+                           <label for="sel1">2. Nombre Cultivo:</label>
+                        <select style="height: 47px;" required="" class="form-control" id="txtNombreCultivoRed">
+                          <option value="0" selected="" disabled="">Seleccione</option>
+                        </select>
+
+                    </div>
+                    <div class="col-sm-4">
+                           <label for="sel1">3. Nombre Actividad:</label>
+                        <select style="height: 47px;" required="" class="form-control" id="txtNombreActividadRed">
+                         <option value="0" selected="" disabled="">Seleccione</option>
+                        </select>
+
+                    </div>
+                  </div>
+               
+
+    <hr>
+
+<!-- RED SOCIAL -->
+<div class="row " id="btnAgregarComentario" onclick="agregarcomentario()">
+  <button class="btn btn-primary " id="botonAgregarComentario" style="margin-left: 30px">Agregar Comentario</button> 
+  <hr><br>
+</div>
+
+  <div class="row" id="contedidoComentarios">
+  
+
+</div>
+<!-- FIN RED SOCIAL -->
+
+
+</div>
+<br><br>
+
+ <!-- FOOTER ----------------   -->
+<footer class="footer">
+  <div class="container text-center">
+  <p class="text-xs-center" >
+
+  </p>
+  </div>
+</footer>
+
+<footer class="mainfooter" role="contentinfo">
+
+
+
+  <div class="footer-middle">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Dirección</h4>
+          <address>
+                <ul class="list-unstyled">
+                  <li>
+                    Sincelejo (Sucre)<br>
+                    212  Street<br>
+                    Lawoma<br>
+                    735<br>
+                  </li>
+                  <li>
+                    Phone: 0
+                  </li>
+                </ul>
+              </address>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Popular Services</h4>
+          <ul class="list-unstyled">
+            <li><a href="#"></a></li>
+            <li><a href="#">Payment Center</a></li>
+            <li><a href="#">Contact Directory</a></li>
+            <li><a href="#">Forms</a></li>
+            <li><a href="#">News and Updates</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Website Information</h4>
+          <ul class="list-unstyled">
+            <li><a href="#">Website Tutorial</a></li>
+            <li><a href="#">Accessibility</a></li>
+            <li><a href="#">Disclaimer</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Webmaster</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Popular Departments</h4>
+          <ul class="list-unstyled">
+            <li><a href="#">Parks and Recreation</a></li>
+            <li><a href="#">Public Works</a></li>
+            <li><a href="#">Police Department</a></li>
+            <li><a href="#">Fire</a></li>
+            <li><a href="#">Mayor and City Council</a></li>
+            <li>
+              <a href="#"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</footer>
+
+<footer class="footer">
+  <div class="container text-center">
+  <p class="text-xs-center" >&copy; Copyright 2018 - AGROAGENDA.  Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- FIN FOOTER -----------------------------------------------------------   -->
+
+<script >
+
+var DatosCultivos;
+ 
+  stylosSesiones();
+  document.getElementById('Agenda')//.style.display=agenda;
+  document.getElementById('Registrarse').style.display=registrarse;
+  document.getElementById('IniciarSesion').style.display=iniciarSesion;
+  document.getElementById('CerrarSesion').style.display=cerrarSesion;
+  document.getElementById('navbarDropdown').style.display=menuAdministrador;
+  document.getElementById('botonAgregarComentario').style.display=btnagregarcomentario;
+  //document.getElementById('agregarCultivos').style.display=agregarSuper;
+  //document.getElementById('agregarExperienciaCultivo').style.display=agregarExpeAdmin;
+
+  if(sessionStorage.getItem('3')=="superAdmin"){
+  }else if(sessionStorage.getItem('3')=="administrador"){
+    }else if(sessionStorage.getItem('3')=="trabajador"){
+        //window.location.href="../index.html";
+    }else{
+     // window.location.href="../index.html";
+    }
+
+
+//------------------------------------------
+function LlenarSelectCultivos(idRegion){
+
+
+      //LLENAR LOS SELECT DEL NOMBRE DE CULTIVOS PARA LAS EXPERIENCIAS    
+             $(function() {
+               $('#txtNombreCultivoRed').empty();
+               $('#txtNombreCultivoRed').append('<option value="" selected="" disabled=""> Seleccione </option>');
+
+
+                $.getJSON(ConsultarCultivosBDD+idRegion, function(data) {
+
+                  for (var i = 0; i < data.length; i++) {
+                  //  $('#traer').append(data[i].nombre + '</br>');
+
+                    $('#txtNombreCultivoRed').append('<option value="' + data[i].idCultivo + '">' + data[i].nombreCultivo + '</option>');
+                  }
+                })
+                .fail(function(){
+                  alertify.error('Región sin cultivos');
+                })
+              });
+//////////////////////////////////////////////
+}
+
+//SELECCIONAR REGIONES Y LLENAR SELECT DE CULTIVOS
+$(document).ready(function() {
+    $("#txtNombreRegionRed").change(function() {
+
+ LlenarSelectCultivos($('#txtNombreRegionRed').val());
+    });
+});
+
+//LLENAR LOS INPUT  DESCRIPCION  EL SELECT DE NOMBRE DEL CULTIVO
+$(document).ready(function() {
+    $("#txtNombreCultivoRed").change(function() {
+
+    LlenarSelectActividad($('#txtNombreCultivoRed').val());
+
+
+    });
+});
+
+$(document).ready(function() {
+    $("#txtNombreActividadRed").change(function() {
+ cargarComenatrios($('#txtNombreActividadRed').val());
+    });
+});
+
+//----/////////////////////////FIN LLENAR INPUT///////////////
+
+//------------------------------------------
+function LlenarSelectActividad(idCultivo){
+  
+  
+
+      //LLENAR LOS SELECT DEL NOMBRE DE ACTIVIDAD    
+             $(function() {
+               $('#txtNombreActividadRed').empty();
+               $('#txtNombreActividadRed').append('<option value="" selected="" disabled=""> Seleccione </option>');
+
+
+                $.getJSON(consultarActividadesSocial+idCultivo, function(data) {
+
+                  for (var i = 0; i < data.length; i++) {
+
+                    $('#txtNombreActividadRed').append('<option value="' + data[i].idActividad + '">' + data[i].nombreActividad + '</option>');
+                  }
+                })
+                .fail(function(){
+                  alertify.error('Cultivo sin actividad');
+                })
+                
+              });
+//////////////////////////////////////////////
+}
+
+function cargarComenatrios(idActividad){
+$('#contedidoComentarios').empty();
+
+
+                  $.getJSON(consultarRetroalimentacion+idActividad, function(data) {
+                      $('#contedidoComentarios').append('<div class="col-sm-12 col-xs-12" id="retroalimentacionInfo"><h3>'+data[0].descripcion+'</h3><hr></div>');
+                      $('#idRetroalimentacion').val(data[0].idRetroalimentacion);
+
+                       $.getJSON(consultarComentariosSocial+data[0].idRetroalimentacion, function(data1) {
+                      for (var i = 0; i < data1.length; i++) {
+                        $('#contedidoComentarios').append('<div class="col-sm-4"><div class="card"><div class="card-body"><h5 class="card-title">'+data1[i].pNombre+'</h5><p class="card-text">'+data1[i].comentario+'</p></div></div></div>');
+                      }
+                })
+
+                })
+                .fail(function(){
+                  alertify.success('Sin Comentarios..');
+                })
+
+
+
+} 
+
+function agregarcomentario() {
+ $('#modalagregarcomentario').modal();
+} 
+
+function enviarComentario(){
+
+  NuevoEvento = {
+      comentario:$('#txtComentario').val(),
+      idRetroalimentacion:$('#idRetroalimentacion').val(),
+      idUsuario:sessionStorage.getItem('1')
+    };
+
+//ACTUALIZAR AGENDA
+    $.ajax({
+      type:'POST',
+      url:enviarComentarios,
+      data: NuevoEvento,
+      success: function(msg){
+        if(msg){         
+           alertify.success("Operación Exitosa :)");
+           location.reload(true);
+        }
+      },
+      error:function(){
+        alertify.error("Operación Fallida :(");
+      }
+
+    });
+
+}
+
+
+
+</script>
+
+<!-- Modal agregar actividad---------------, -->
+      <div class="modal fade" id="modalagregarcomentario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tituloEventoModal">Agregar Comentario</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: none;">
+                  Id: <input type="text" style="display: none;" id="idRetroalimentacion" > <br/> 
+                </div>
+              
+              <form>
+                
+                  <div class="form-group">
+                    <label >Comenatrio</label>
+                    <textarea class="form-control"  id="txtComentario" rows="3"></textarea>
+                  </div>
+
+                </form>
+
+            </div>
+              <div class="modal-footer">
+                <button type="button" id="btnConfirmarActividad" onclick="enviarComentario()" class="btn btn-success" >Confirmar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+          
+          </div>
+        </div>
+      </div>
+      <!-- FIN Modal Modal Agregar,   -->
+
+</body>
+</html>

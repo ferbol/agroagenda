@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- NO CACHE EN LOS BUSCADORES !-->
+        <meta charset="utf-8">
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="Last-Modified" content="0">
+        <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+
+
+ <!-- LIBRERIAS BOOTSTRAP !-->
+    <script src="../framework/bootstrap/js/jquery-3.3.1.min.js"></script>
+      <script src="../framework/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../framework/bootstrap/css/bootstrap.min.css">
+  <script src="../framework/bootstrap/js/popper.min.js"></script>
+
+  <script src="../framework/alertifyjs/alertify.js"></script>
+  <link rel="stylesheet" type="text/css" href="../framework/alertifyjs/css/alertify.css">
+  <link rel="stylesheet" type="text/css" href="../framework/alertifyjs/css/themes/default.css">
+
+  <!-- <script src='framework/fullcalendar/lib/jquery.min.js'></script> -->
+  <script src='../framework/fullcalendar/lib/moment.min.js'></script>
+  <script src='../framework/fullcalendar/fullcalendar.min.js'></script>
+  <link rel='stylesheet' href='../framework/fullcalendar/fullcalendar.min.css' />
+  <script src='../framework/fullcalendar/es.js'></script>
+
+  <script src='../framework/bootstrap/js/bootstrap-clockpicker.js'></script>
+  <link rel="stylesheet" href="../framework/bootstrap/css/bootstrap-clockpicker.css">
+
+  <link rel="stylesheet" href="../css/footer.css">
+<script src='../js/datos.js'></script>
+
+     <!-- Custom styles for this template -->
+    <link href="../css/one-page-wonder.min.css" rel="stylesheet">
+
+      <!-- URL BD -->
+    <script src='../js/url_BD.js'></script>
+
+<!-- PUSH NOTIFICACIONES 
+    <script src="../framework/push/push.min.js" ></script>
+
+    <script>
+    //Todo el código que se encuentra aquí se auto explica 
+    Push.create("AgroAgenda", { //Titulo de la notificación
+      body: "Desarrollador front-end.", //Texto del cuerpo de la notificación
+      icon: 'https://01luisrene.com/content/images/2017/04/autor.png', //Icono de la notificación
+      timeout: 6000, //Tiempo de duración de la notificación
+      onClick: function () {//Función que se cumple al realizar clic cobre la notificación
+        window.location = "file:///C:/Users/FernandoXPS/OneDrive/El%20Rincon%20Del%20Ingeniero/agroagenda/index.html"; //Redirige a la siguiente web
+        this.close(); //Cierra la notificación
+      }
+    });
+  </script>
+ -->
+
+	<style>
+  .bg-1 {
+      background-color: #1abc9c;
+      color: #ffffff;
+  }
+  .bg-2 {
+      background-color: #474e5d;
+      color: #ffffff;
+  }
+  .bg-3 {
+      background-color: #ffffff;
+      color: #555555;
+  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+  }
+   /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
+    .fc th{
+    padding: 10px 0px;
+    vertical-align: middle;
+    background: #F2F2F2;
+    width: 3px;
+    height: 2px;
+  }
+    .fc td{
+    width: 3px;
+    height: 3px;
+  }
+  </style>
+
+
+
+	<title>Agro Agenda</title>
+</head>
+<body>
+
+<!--MENU--------------------------------->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" >
+    <div class="container">
+  <a class="navbar-brand" href="index.html" >
+   <b> AGROAGENDA </b>
+  <!-- <img src="img/logo.png" alt="Los Angeles" width="1100" height="500"> -->
+  </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+  <div class="navbar-collapse collapse" id="navbarResponsive" style="">
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html" id="Inicio">Inicio <span class="sr-only">(current)</span> </a>
+      </li>
+      
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administrador
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item " href="listarAgenda.html" id="Agenda">Agendas</a>
+          <a class="dropdown-item " href="gestionarUsuario.html" id="gestionarUsuario">Gestionar Usuario</a>
+          <a class="dropdown-item " href="gestionarExperiencias.html" id="gestionarExperiencias">Gestionar Experiencias</a>
+          <a class="dropdown-item " href="gestionarPlagas.php" id="gestionarPlagas">Gestionar Plagas</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="redSocial.html" id="redSocial">Red Social</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="../paginas/empresas.html" id="Empresas">Empresas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../paginas/contacto.html" id="Contacto">Contacto</a>
+      </li>  
+
+                  <li class="nav-item">
+              <a class="nav-link" href="../paginas/registroPublico.html" style="color: yellow" id="Registrarse">Registrarse</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../paginas/login.html" style="color: yellow" id="IniciarSesion">Iniciar Sesión</a>
+            </li> 
+            <li class="nav-item">
+              <button type="button" onclick="CerrarSesion()" class="btn btn-outline-light" id="CerrarSesion">Cerrar Sesión</button>
+            </li>  
+    </ul>
+
+  </div>
+
+
+</div>
+</nav>
+<!--FIN MENU--------------------------------->
+
+
+
+<br><br>
+<br>
+
+<div class="container">
+
+  <div class="jumbotron">
+    <h1 style="text-align: center;">Cultivos por regiones</h1>
+
+    <button type="button" onclick="$('#modalAgregarCultivos').modal();" id="agregarCultivos" class="btn btn-success">Agregar Cultivos Recomendados</button> <hr>
+
+    <button type="button" onclick="$('#modalAgregarExperiencias').modal();" id="agregarExperienciaCultivo" class="btn btn-success">Agregar Experiencias de Cultivos</button> <hr>
+
+
+<div id="accordion">
+
+   <div class="card">
+    <div class="card-header" id="headingUno">
+      <h6 class="mb-0" style="text-align: center;">
+        <button class="btn btn-info" style="width: 250px" type="button" data-toggle="collapse" data-target="#regionAmazonas" aria-expanded="false" aria-controls="regionAmazonas">Región Amazonas</button>
+      </h6>
+    </div>
+    <div class="collapse multi-collapse" id="regionAmazonas">
+      <div class="card-body">
+        <div class="cultivosRegionAmazonas"> <!-- AQUI VA EL ACORDEON DINAMICO -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingDos">
+      <h6 class="mb-0" style="text-align: center;">
+        <button class="btn btn-info" style="width: 250px" type="button" data-toggle="collapse" data-target="#regionAndina" aria-expanded="false" aria-controls="regionAndina">Región Andina</button>
+      </h6>
+    </div>
+    <div class="collapse multi-collapse" id="regionAndina">
+      <div class="card-body">
+        <div class="cultivosRegionAndina"> <!-- AQUI VA EL ACORDEON DINAMICO -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingTres">
+      <h6 class="mb-0" style="text-align: center;">
+        <button class="btn btn-info" type="button"  style="width: 250px" data-toggle="collapse" data-target="#regionCaribe" aria-expanded="false" aria-controls="regionCaribe">Región Caribe</button>
+      </h6>
+    </div>
+    <div class="collapse multi-collapse" id="regionCaribe">
+      <div class="card-body">
+        <div class="cultivosRegionCaribe"> <!-- AQUI VA EL ACORDEON DINAMICO -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingCuatro">
+      <h6 class="mb-0" style="text-align: center;">
+        <button class="btn btn-info" type="button" style="width: 250px" data-toggle="collapse" data-target="#regionOrinoquia" aria-expanded="false" aria-controls="regionOrinoquia">Región Orinoquia</button>
+      </h6>
+    </div>
+    <div class="collapse multi-collapse" id="regionOrinoquia">
+      <div class="card-body">
+        <div class="cultivosRegionOrinoquia"> <!-- AQUI VA EL ACORDEON DINAMICO -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingCinco">
+      <h6 class="mb-0" style="text-align: center;">
+        <button class="btn btn-info" type="button"  style="width: 250px; " data-toggle="collapse" data-target="#regionPacifica" aria-expanded="false" aria-controls="regionPacifica">Región Pacifica</button>
+      </h6>
+    </div>
+    <div class="collapse multi-collapse" id="regionPacifica">
+      <div class="card-body">
+        <div class="cultivosRegionPacifica"> <!-- AQUI VA EL ACORDEON DINAMICO -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+  </div>
+
+</div>
+
+
+<!-- Modal Agregar CULTIVO POR EL SUPER ADMIN---------------, -->
+      <div class="modal fade" id="modalAgregarCultivos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tituloEventoModal">Agregar Cultivos</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+               <div style="display: none;">
+                    <label >Id Cultivo:</label>
+                      <input type="text" id="txtIdCultivoNuevo" class="form-control form-control-lg rounded-0"  required="Complete los campos">
+
+                </div>
+
+              <form>
+
+                <div class="form-row">
+                    <div class="col">
+                      <label >Nombre Cultivo:</label>
+                      <input type="text" id="txtNombreCultivoNuevo" class="form-control form-control-lg rounded-0"  required="Complete los campos">
+                    </div>
+
+                  </div>
+
+                  <div class="form-row">
+
+                    <div class="col">
+                      <label >Descripción del Cultivo:</label>
+                      <textarea class="form-control"  id="txtDescripcionNuevo" rows="2"></textarea>
+                      </div>
+                    </div>
+
+
+                  <div class="form-row">
+                    <div class="col">
+                        <label for="sel1">Region del Cultivo:</label>
+                        <select style="height: 47px;" required="" class="form-control" id="txtRegionNuevo">
+                          <option value="" selected="" disabled="">Seleccionar</option>
+                          <option value="amazonas" >Región Amazonas</option>
+                          <option value="andina" >Región Andina</option>
+                          <option value="caribe" >Región Caribe</option>
+                          <option value="orinoquia" >Región Orinoquia</option>
+                          <option value="pacifica" >Región Pacifica</option>
+                        </select>
+                    </div>
+
+                  </div>
+
+                </form>
+
+            </div>
+
+              <div class="modal-footer">
+                <button type="button" id="btnCultivoNuevo" onclick="agregarCultivoSuper()" class="btn btn-success" data-dismiss="modal" >Agregar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- FIN Modal Modal Agregar, SUPER ADMIN  -->
+
+
+      <!-- Modal EDITAR CULTIVO POR EL SUPER ADMIN---------------
+      <div class="modal fade" id="modalEditarCultivos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tituloEventoModal">Agregar Cultivos</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+               <div style="display: none;">
+                    <label >Id Cultivo:</label>
+                      <input type="text" id="txtIdCultivoEditar" class="form-control form-control-lg rounded-0"  required="Complete los campos">
+
+                </div>
+
+              <form>
+
+                <div class="form-row">
+                    <div class="col">
+                      <label >Nombre Cultivo:</label>
+                      <input type="text" id="txtNombreCultivoEditar" class="form-control form-control-lg rounded-0"  required="Complete los campos">
+                    </div>
+
+                  </div>
+
+                  <div class="form-row">
+
+                    <div class="col">
+                      <label >Descripción del Cultivo:</label>
+                      <textarea class="form-control"  id="txtDescripcionEditar" rows="2"></textarea>
+                      </div>
+                    </div>
+
+
+                  <div class="form-row">
+                    <div class="col">
+                        <label for="sel1">Region del Cultivo:</label>
+                        <select style="height: 47px;" required="" class="form-control" id="txtRegionEditar">
+                          <option value="" selected="" disabled="">Seleccionar</option>
+                          <option value="amazonas" >Región Amazonas</option>
+                          <option value="andina" >Región Andina</option>
+                          <option value="caribe" >Región Caribe</option>
+                          <option value="orinoquia" >Región Orinoquia</option>
+                          <option value="pacifica" >Región Pacifica</option>
+                        </select>
+                    </div>
+
+                  </div>
+
+                </form>
+
+            </div>
+
+              <div class="modal-footer">
+                <button type="button" id="btnEditarCultivoNuevo" onclick="" class="btn btn-success" data-dismiss="modal" >Confirmar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+
+          </div>
+        </div>
+      </div>
+      -->
+      <!-- FIN Modal Modal EDITAR, SUPER ADMIN  -->
+
+<!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+<!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+<!-- |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+
+<!-- Modal Agregar EXPERIENCIA DE CULTIVO ADMINISTRADOR---------------, -->
+      <div class="modal fade" id="modalAgregarExperiencias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tituloEventoModal">Agregar Experiencias de Cultivos</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+         <!--      <div style="display: none;">
+                    <label >Id Cultivo:</label>
+                      <input type="text" id="txtIdCultivoNuevo" class="form-control form-control-lg rounded-0"  required="Complete los campos">
+
+                </div>
+          -->
+
+              <form>
+                <div class="form-row">
+                    <div class="col">
+                           <label for="sel1">Nombre de la Region:</label>
+                        <select style="height: 47px;" required="" class="form-control" id="txtRegionExp">
+                          <option value="0" selected="" disabled="">Seleccionar opción</option>
+                          <option value="1" >Región Amazonas</option>
+                          <option value="2" >Región Andina</option>
+                          <option value="3" >Región  Caribe</option>
+                          <option value="4" >Región Orinoquia</option>
+                          <option value="5" >Región Pacifica</option>
+                        </select>
+
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                           <label for="sel1">Nombre Cultivo:</label>
+                        <select style="height: 47px;" required="" class="form-control" id="txtNombreCultivoExp">
+                          <option name="" selected="" disabled="">Seleccione</option>
+                        </select>
+
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="col">
+                      <label >Descripción del Cultivo:</label>
+                      <textarea disabled="" class="form-control"  id="txtDescripcionExp" rows="2"></textarea>
+                    </div>
+                  </div>
+                <hr>
+<!-- //////////////////////////////////////////  -->
+                  <div class="form-row">
+                    <div class="col">
+                      <label >Procedimiento para el cultivo:</label>
+                      <textarea class="form-control"  id="txtProcedimientoExp" rows="2"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="col">
+                      <label >Como Sembrar:</label>
+                      <textarea class="form-control"  id="txtComoSembrarExp" rows="2"></textarea>
+                    </div>
+                  </div>
+
+                <div class="form-row">
+                  <div class="col">
+                      <label >Abonos:</label>
+                        <input type="text" id="txtAbonoExp" class="form-control form-control-lg rounded-0"  required="Complete los campos">
+                    </div>
+                    <div class="col">
+                      <label >Tipo de Semilla:</label>
+                      <input type="text" id="txtTipoSemillaExp" class="form-control form-control-lg rounded-0"  required="Complete los campos">
+                    </div>
+                  </div>
+
+
+                </form>
+
+            </div>
+
+              <div class="modal-footer">
+                <button type="button" id="btnAgregarExp" onclick="RecolectarDatosInput()" class="btn btn-success" data-dismiss="modal" >Agregar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- FIN Modal Modal Agregar,  EXPERIENCIA DE CULTIVO ADMINISTRADOR -->
+
+
+<!-- Modal EDITAR EXPERIENCIA DE CULTIVO ADMINISTRADOR---------------, -->
+      <div class="modal fade" id="modalEditarExperiencias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tituloEventoModal">Agregar Experiencias de Cultivos</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div style="display: none;">
+                    <label >Id Cultivo:</label>
+                      <input type="text" id="txtIdCultivoEditExp" class="form-control form-control-lg rounded-0"  required="Complete los campos">
+
+                </div>
+        
+<!-- //////////////////////////////////////////  -->
+                  <div class="form-row">
+                    <div class="col">
+                      <label >Procedimiento para el cultivo:</label>
+                      <textarea class="form-control"  id="txtProcedimientoEditExp" rows="2"></textarea>
+                      </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="col">
+                      <label >Como Sembrar:</label>
+                      <textarea class="form-control"  id="txtComoSembrarEditExp" rows="2"></textarea>
+                      </div>
+                  </div>
+
+                <div class="form-row">
+                  <div class="col">
+                      <label >Abonos:</label>
+                        <input type="text" id="txtAbonoEditExp" class="form-control form-control-lg rounded-0"  required="Complete los campos">
+                    </div>
+                    <div class="col">
+                      <label >Tipo de Semilla:</label>
+                      <input type="text" id="txtTipoSemillaEditExp" class="form-control form-control-lg rounded-0"  required="Complete los campos">
+                    </div>
+                  </div>
+
+
+                </form>
+
+            </div>
+
+              <div class="modal-footer">
+                <button type="button" id="btnEditarExp" onclick="EditarExperienciasBD()" class="btn btn-success" data-dismiss="modal" >Confirmar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- FIN Modal Modal EDIRTAR,  EXPERIENCIA DE CULTIVO ADMINISTRADOR -->
+
+<br><br>
+
+ <!-- FOOTER ----------------   -->
+<footer class="footer">
+  <div class="container text-center">
+  <p class="text-xs-center" >
+
+  </p>
+  </div>
+</footer>
+
+<footer class="mainfooter" role="contentinfo">
+
+
+
+  <div class="footer-middle">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Dirección</h4>
+          <address>
+                <ul class="list-unstyled">
+                  <li>
+                    Sincelejo (Sucre)<br>
+                    212  Street<br>
+                    Lawoma<br>
+                    735<br>
+                  </li>
+                  <li>
+                    Phone: 0
+                  </li>
+                </ul>
+              </address>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Popular Services</h4>
+          <ul class="list-unstyled">
+            <li><a href="#"></a></li>
+            <li><a href="#">Payment Center</a></li>
+            <li><a href="#">Contact Directory</a></li>
+            <li><a href="#">Forms</a></li>
+            <li><a href="#">News and Updates</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Website Information</h4>
+          <ul class="list-unstyled">
+            <li><a href="#">Website Tutorial</a></li>
+            <li><a href="#">Accessibility</a></li>
+            <li><a href="#">Disclaimer</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Webmaster</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Popular Departments</h4>
+          <ul class="list-unstyled">
+            <li><a href="#">Parks and Recreation</a></li>
+            <li><a href="#">Public Works</a></li>
+            <li><a href="#">Police Department</a></li>
+            <li><a href="#">Fire</a></li>
+            <li><a href="#">Mayor and City Council</a></li>
+            <li>
+              <a href="#"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!--<div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <p class="text-xs-center" >&copy; Copyright 2018 - CECAR.  Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</footer>
+
+<footer class="footer">
+  <div class="container text-center">
+  <p class="text-xs-center" >&copy; Copyright 2018 - AGROAGENDA.  Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- FIN FOOTER -----------------------------------------------------------   -->
+
+<script >
+
+var DatosCultivos;
+ 
+  stylosSesiones();
+  document.getElementById('Agenda')//.style.display=agenda;
+  document.getElementById('Registrarse').style.display=registrarse;
+  document.getElementById('IniciarSesion').style.display=iniciarSesion;
+  document.getElementById('CerrarSesion').style.display=cerrarSesion;
+  document.getElementById('navbarDropdown').style.display=menuAdministrador;
+  document.getElementById('agregarCultivos').style.display=agregarSuper;
+  document.getElementById('agregarExperienciaCultivo').style.display=agregarExpeAdmin;
+
+  if(sessionStorage.getItem('3')=="superAdmin"){
+  }else if(sessionStorage.getItem('3')=="administrador"){
+    }else if(sessionStorage.getItem('3')=="trabajador"){
+        window.location.href="../index.html";
+    }else{
+      window.location.href="../index.html";
+    }
+
+
+//------------------------------------------
+function LlenarSelectCultivos(idRegion){
+
+
+      //LLENAR LOS SELECT DEL NOMBRE DE CULTIVOS PARA LAS EXPERIENCIAS    
+             $(function() {
+               $('#txtNombreCultivoExp').empty();
+               $('#txtNombreCultivoExp').append('<option name="" selected="" disabled=""> Seleccione </option>');
+
+
+                $.getJSON(ConsultarCultivosBDD+idRegion, function(data) {
+
+                  for (var i = 0; i < data.length; i++) {
+                  //  $('#traer').append(data[i].nombre + '</br>');
+
+                    $('#txtNombreCultivoExp').append('<option name="' + data[i].idCultivo + '">' + data[i].nombreCultivo + '</option>');
+                  }
+                })
+                .fail(function(){
+                  alertify.error('Región sin cultivos');
+                })
+              });
+//////////////////////////////////////////////
+}
+
+//SELECCIONAR REGIONES Y LLENAR SELECT DE CULTIVOS
+$(document).ready(function() {
+    $("#txtRegionExp").change(function() {
+
+ LlenarSelectCultivos($('#txtRegionExp').val());
+    });
+});
+
+//LLENAR LOS INPUT  DESCRIPCION  EL SELECT DE NOMBRE DEL CULTIVO
+$(document).ready(function() {
+    $("#txtNombreCultivoExp").change(function() {
+  $("#txtDescripcionExp").empty();
+  $.getJSON(ConsultarDescripcion+$("#txtNombreCultivoExp").val(),function(data){
+    //console.log(data[0]);
+    
+    $('#txtDescripcionExp').append(data[0].descripcion);
+    //$('#txtRegionExp').val(data[0].region);
+
+  });
+    });
+});
+//----/////////////////////////FIN LLENAR INPUT///////////////
+
+//FUNCION PARA AGREGAR BD EXPERIENCIAS---------------------------------
+  function RecolectarDatosInput(){
+
+      NuevoEvento = {
+      idUsuario:sessionStorage.getItem('1'),
+      password:sessionStorage.getItem('2'),
+      nombreCultivo:$('#txtNombreCultivoExp').val(),
+      tipoSemilla:$('#txtTipoSemillaExp').val(),
+      abono:$('#txtAbonoExp').val(),
+      procedimiento:$('#txtProcedimientoExp').val(),
+        comoSembrar:$('#txtComoSembrarExp').val()
+
+    };
+    console.log(NuevoEvento);
+    
+    EnviarInformacion(NuevoEvento);
+
+  }
+  
+  //ENVIAR INFORMACION A LA BASE DE DATOS
+  function EnviarInformacion( objEvento){
+
+    $.ajax({
+      type:'POST',
+      url:InsertarExperiencias,
+      data: objEvento,
+      success: function(msg){
+        if(msg){
+
+           alertify.success("Operación Exitosa :)");
+
+        }
+      },
+      error:function(){
+        alertify.error("Operación Fallida :(");
+      }
+
+    });
+
+  }
+  //FIN FUNCION AGREGAR BD-------------------------------------------------
+
+//LLAMAR AL MODAL EDITAR EXPERIENCIA
+function LlamarModalEditarExp(id,tipoSemilla,abono,procedimiento,comoSembrar){
+ // $('#modalEditarExperiencias').modal();
+  $('#txtIdCultivoEditExp').val(id);
+  $('#txtTipoSemillaEditExp').val(tipoSemilla);
+  $('#txtAbonoEditExp').val(abono);
+  $('#txtProcedimientoEditExp').val(procedimiento);
+  $('#txtComoSembrarEditExp').val(comoSembrar);
+  
+  $('#modalEditarExperiencias').modal();
+}
+//FUNCION EDITAR EXPERIENCIA DE CULTIVOS
+function EditarExperienciasBD(){
+
+ objEvento = {
+      idDetalleCultivo:$('#txtIdCultivoEditExp').val(),
+      tipoSemilla:$('#txtTipoSemillaEditExp').val(),
+      abono:$('#txtAbonoEditExp').val(),
+      procedimiento:$('#txtProcedimientoEditExp').val(),
+      comoSembrar:$('#txtComoSembrarEditExp').val()
+
+    };
+
+  $.ajax({
+      type:'POST',
+      url:EditarExperiencias,
+      data: objEvento,
+      success: function(msg){
+        if(msg){
+
+           alertify.success("Operación Exitosa :)");
+
+        }
+      },
+      error:function(){
+        alertify.error("Operación Fallida :(");
+      }
+
+    });  
+
+}
+
+//FUNCION ELIMINAR EXPERIENCIA DE CULTIVOS
+function EliminarExperienciasBD(idDetalleCultivo){
+
+objEvento = {
+          idDetalleCultivo:idDetalleCultivo
+    };
+
+  $.ajax({
+      type:'POST',
+      url:EliminarExperiencias,
+      data: objEvento,
+      success: function(msg){
+        if(msg){
+          location.reload(true);
+           alertify.success("Operación Exitosa :)");
+
+        }
+      },
+      error:function(){
+        alertify.error("Operación Fallida :(");
+      }
+
+});
+}
+
+  //LISTAR CULTIVOS DETALLE-------ACORDEON DYNAMICAS-----------------------------------------------
+
+  function CultivoDetalle(IdCultivo,idObject){
+    idCultivo=IdCultivo;
+              
+              idUsuario = sessionStorage.getItem('1');
+
+                $.getJSON(ExperienciasCultivos+idUsuario+'&idCultivo='+idCultivo, function(data) {
+                  
+                  var idExp;                    
+
+                  for (var i = 0; i < data.length; i++) {
+                   
+                      switch(idObject){
+
+                        case 1: idExp='idAmazonasExp'+IdCultivo; break;
+                        case 2: idExp='idAndinaExp'+IdCultivo; break;
+                        case 3: idExp='idCaribeExp'+IdCultivo; break;
+                        case 4: idExp='idOrinoquiaExp'+IdCultivo; break;
+                        case 5: idExp='idPacificaExp'+IdCultivo; break;
+                        default : break;
+
+                      }
+
+
+                  $('#'+idExp).append(
+                    '<hr><div class="form-row " >'+
+
+                      '<div class="col-sm-8 col-lg-8 col-xs-12">'+
+
+                        '<div class="col-sm-12">'+
+                          '<strong><label >Tipo Semilla: </label></strong> '+data[i].tipoSemilla+'</div>'+
+                        '<div class="col-sm-12">'+
+                          '<strong><label >Abono: </label></strong>'+data[i].abono+'</div>'+
+                        '<div class="col-sm-12">'+
+                          '<strong><label >Procedimiento: </label></strong>'+data[i].procedimiento+'</div>'+
+                        '<div class="col-sm-12">'+
+                          '<strong><label >Como Sembrar: </label></strong>'+data[i].comoSembrar+'</div>'+
+
+                      '</div>'+
+
+                      '<div class="col-sm-4 col-lg-4 col-xs-12">'+
+
+                          '<div class="col-sm-6 col-lg-6 col-xl-6 col-xs-12" style="text-align:center">'+
+                          '<button type="button" style="width: 100px; margin-top:10px" id="BotonEditarExp" class="btn btn-warning" onclick="LlamarModalEditarExp(\''+data[i].idDetalleCultivo+'\',\''+data[i].tipoSemilla+'\',\''+data[i].abono+'\',\''+data[i].procedimiento+'\',\''+data[i].comoSembrar+'\')">Editar</button>'+
+                        '</div>'+
+
+                        '<div class="col-sm-6 col-lg-6 col-xl-6 col-xs-12" style="text-align:center">'+
+                          '<button type="button" id="BotonEliminarExp" onclick="EliminarExperienciasBD('+data[i].idDetalleCultivo+')" style="width: 100px; margin-top:10px"  class="btn btn-danger">Eliminar</button>'+
+                        '</div>'+
+
+                      '</div>'+
+
+                    '</div>'
+
+
+                    );
+
+                    }
+
+                })
+                .fail(function(){
+                  //alertify.error('Error Al Contultar FOR');
+                });
+
+                return "";
+
+
+}
+
+
+
+
+//LISTAR CULTIVOS  REGION AMAZONAS -------ACORDEON DYNAMICAS------------------------------------------------
+
+    var  idUsuario=sessionStorage.getItem("1");
+    var  password=sessionStorage.getItem("2");
+    var idRegionAmazona='1';
+
+var result="";
+$(function(){
+        $.getJSON(CultivosRecomendadosAmazona+idRegionAmazona,function(data){
+
+          var data = {
+  items:data};
+
+var success = function(data) {
+  data.items.forEach(function(item,index) {
+    $('.cultivosRegionAmazonas').append(
+    '<div class="card">'+
+      '<div class="card-header" id="heading_'+index+'">'+
+        '<h5 class="mb-0">'+
+        '<button class="btn btn-link" data-toggle="collapse" data-target="#collapse_'+index+'" aria-expanded="true" aria-controls="collapse_'+index+'">'+
+          "Nombre del Cultivo: "+item.nombreCultivo+""+
+        '</button>'+
+      '</h5>'+
+      '</div>'+
+      '<div id="collapse_'+index+'" class="collapse" aria-labelledby="heading_'+index+'" data-parent="#accordion">'+
+        '<div class="card-body">'+
+           '<div class="form-row">'+
+             '<div class="col" id="idAmazonasExp'+item.idCultivo+'">'+
+                '<strong><label >Descripción: </label></strong>'+
+                " "+item.descripcion+'<hr>'+
+                '<h6 style="text-align:center">EXPERIENCIAS CON ESTE CULTIVO:</h6> <hr>'+
+
+                CultivoDetalle(item.idCultivo,1)
+
+                +
+              '</div>'+
+              
+            '</div>'+
+
+                   '<hr>'+
+                  '<div class="form-row">'+
+
+                /*    '<div class="col-sm-6 col-lg-6 col-xl-6 col-xs-12" style="text-align:center">'+
+                      '<button type="button" style="width: 200px; margin-top:10px" id="BotonEditarCultivos" onclick="EditarCultivosBD('+item.idUsuario+')" class="btn btn-warning ">Editar Cultivo</button>'+
+                    '</div>'+
+
+                    '<div class="col-sm-6 col-lg-6 col-xl-6 col-xs-12" style="text-align:center">'+
+                      '<button type="button" id="BotonEliminarCultivos" style="width: 200px; margin-top:10px" onclick="EliminarCultivosBD('+item.idAgenda+')" class="btn btn-danger">Eliminar Cultivo</button>'+
+                    '</div>'+
+                */
+
+                  '</div>'+
+
+        '</div>'+
+      '</div>'+
+    '</div>'
+
+      );
+
+  });
+}
+
+// Feaking an ajax response...
+success(data);
+
+ })
+        .fail(function() {
+          //alertify.error("Usuario no Existe");
+          })
+      });
+
+//FIN LISTAR CULTIVOS  REGION AMAZONAS -------ACORDEON DYNAMICAS------------------------------------------------
+
+
+ //LISTAR CULTIVOS REGION ANDINA-------ACORDEON DYNAMICAS-----------------------------------------------
+
+    var  idUsuario=sessionStorage.getItem("1");
+    var  password=sessionStorage.getItem("2");
+    var idRegionAndina='2';
+
+var result="";
+$(function(){
+        $.getJSON(CultivosRecomendadosAndina+idRegionAndina,function(data){
+
+          var data = {
+  items:data};
+
+
+
+var success = function(data) {
+  data.items.forEach(function(item,index) {
+    $('.cultivosRegionAndina').append(
+    '<div class="card">'+
+      '<div class="card-header" id="heading_A'+index+'">'+
+        '<h5 class="mb-0">'+
+        '<button class="btn btn-link" data-toggle="collapse" data-target="#collapse_A'+index+'" aria-expanded="true" aria-controls="collapse_A'+index+'">'+
+          "Nombre del Cultivo: "+item.nombreCultivo+""+
+        '</button>'+
+      '</h5>'+
+      '</div>'+
+      '<div id="collapse_A'+index+'" class="collapse" aria-labelledby="heading_A'+index+'" data-parent="#accordion">'+
+        '<div class="card-body">'+
+           '<div class="form-row">'+
+             '<div class="col" id="idAndinaExp'+item.idCultivo+'">'+
+                '<strong><label >Descripción: </label></strong>'+
+                " "+item.descripcion+'<hr>'+
+                '<h6 style="text-align:center">EXPERIENCIAS CON ESTE CULTIVO:</h6> <hr>'+
+
+                CultivoDetalle(item.idCultivo,2)
+
+                +
+              '</div>'+
+              
+            '</div>'+
+
+                   '<hr>'+
+              /*    '<div class="form-row">'+
+
+                    '<div class="col-sm-6 col-lg-6 col-xl-6 col-xs-12" style="text-align:center">'+
+                      '<button type="button" style="width: 200px; margin-top:10px" id="BotonEditarCultivos" onclick="EditarCultivosBD('+item.idUsuario+')" class="btn btn-warning ">Editar Cultivo</button>'+
+                    '</div>'+
+
+                    '<div class="col-sm-6 col-lg-6 col-xl-6 col-xs-12" style="text-align:center">'+
+                      '<button type="button" id="BotonEliminarCultivos" style="width: 200px; margin-top:10px" onclick="EliminarCultivosBD('+item.idAgenda+')" class="btn btn-danger">Eliminar Cultivo</button>'+
+                    '</div>'+
+
+                  '</div>'+
+
+              */
+
+        '</div>'+
+      '</div>'+
+    '</div>'
+
+      );
+
+  });
+}
+
+// Feaking an ajax response...
+success(data);
+
+ })
+        .fail(function() {
+          //alertify.error("Usuario no Existe");
+          })
+      });
+
+//FIN LISTAR CULTIVOS  REGION ANDINA -------ACORDEON DYNAMICAS------------------------------------------------
+
+
+ //LISTAR CULTIVOS REGION CARIBE-------ACORDEON DYNAMICAS-----------------------------------------------
+
+    var  idUsuario=sessionStorage.getItem("1");
+    var  password=sessionStorage.getItem("2");
+    var idRegionCaribe='3';
+
+var result="";
+$(function(){
+        $.getJSON(CultivosRecomendadosCaribe+idRegionCaribe,function(data){
+
+          var data = {
+  items:data};
+
+var success = function(data) {
+  data.items.forEach(function(item,index) {
+    $('.cultivosRegionCaribe').append(
+    '<div class="card">'+
+      '<div class="card-header" id="heading_C'+index+'">'+
+        '<h5 class="mb-0">'+
+        '<button class="btn btn-link" data-toggle="collapse" data-target="#collapse_C'+index+'" aria-expanded="true" aria-controls="collapse_C'+index+'">'+
+          "Nombre del Cultivo: "+item.nombreCultivo+""+
+        '</button>'+
+      '</h5>'+
+      '</div>'+
+      '<div id="collapse_C'+index+'" class="collapse" aria-labelledby="heading_C'+index+'" data-parent="#accordion">'+
+        '<div class="card-body">'+
+           '<div class="form-row">'+
+             '<div class="col" id="idCaribeExp'+item.idCultivo+'">'+
+                '<strong><label >Descripción: </label></strong>'+
+                " "+item.descripcion+'<hr>'+
+                '<h6 style="text-align:center">EXPERIENCIAS CON ESTE CULTIVO:</h6> <hr>'+
+
+                CultivoDetalle(item.idCultivo,3)
+
+                +
+              '</div>'+
+              
+            '</div>'+
+
+                   '<hr>'+
+          /*        '<div class="form-row">'+
+
+                    '<div class="col-sm-6 col-lg-6 col-xl-6 col-xs-12" style="text-align:center">'+
+                      '<button type="button" style="width: 200px; margin-top:10px" id="BotonEditarCultivos" onclick="EditarCultivosBD('+item.idUsuario+')" class="btn btn-warning ">Editar Cultivo</button>'+
+                    '</div>'+
+
+                    '<div class="col-sm-6 col-lg-6 col-xl-6 col-xs-12" style="text-align:center">'+
+                      '<button type="button" id="BotonEliminarCultivos" style="width: 200px; margin-top:10px" onclick="EliminarCultivosBD('+item.idAgenda+')" class="btn btn-danger">Eliminar Cultivo</button>'+
+                    '</div>'+
+
+                  '</div>'+
+*/
+        '</div>'+
+      '</div>'+
+    '</div>'
+
+      );
+
+  });
+}
+
+// Feaking an ajax response...
+success(data);
+
+ })
+        .fail(function() {
+          //alertify.error("Usuario no Existe");
+          })
+      });
+
+//FIN LISTAR CULTIVOS  REGION CARIBE -------ACORDEON DYNAMICAS------------------------------------------------
+
+
+ //LISTAR CULTIVOS REGION ORINOQUIA-------ACORDEON DYNAMICAS-----------------------------------------------
+
+    var  idUsuario=sessionStorage.getItem("1");
+    var  password=sessionStorage.getItem("2");
+    var idRegionOrinoquia='4';
+
+var result="";
+$(function(){
+        $.getJSON(CultivosRecomendadosOrinoquia+idRegionOrinoquia,function(data){
+
+          var data = {
+  items:data};
+
+var success = function(data) {
+  data.items.forEach(function(item,index) {
+    $('.cultivosRegionOrinoquia').append(
+    '<div class="card">'+
+      '<div class="card-header" id="heading_O'+index+'">'+
+        '<h5 class="mb-0">'+
+        '<button class="btn btn-link" data-toggle="collapse" data-target="#collapse_O'+index+'" aria-expanded="true" aria-controls="collapse_O'+index+'">'+
+          "Nombre del Cultivo: "+item.nombreCultivo+""+
+        '</button>'+
+      '</h5>'+
+      '</div>'+
+      '<div id="collapse_O'+index+'" class="collapse" aria-labelledby="heading_O'+index+'" data-parent="#accordion">'+
+        '<div class="card-body">'+
+           '<div class="form-row">'+
+             '<div class="col" id="idOrinoquiaExp'+item.idCultivo+'">'+
+                '<strong><label >Descripción: </label></strong>'+
+                " "+item.descripcion+'<hr>'+
+                '<h6 style="text-align:center">EXPERIENCIAS CON ESTE CULTIVO:</h6> <hr>'+
+
+                CultivoDetalle(item.idCultivo,4)
+
+                +
+              '</div>'+
+              
+            '</div>'+
+
+                   '<hr>'+
+             /*    '<div class="form-row">'+
+
+                    '<div class="col-sm-6 col-lg-6 col-xl-6 col-xs-12" style="text-align:center">'+
+                      '<button type="button" style="width: 200px; margin-top:10px" id="BotonEditarCultivos" onclick="EditarCultivosBD('+item.idUsuario+')" class="btn btn-warning ">Editar Cultivo</button>'+
+                    '</div>'+
+
+                    '<div class="col-sm-6 col-lg-6 col-xl-6 col-xs-12" style="text-align:center">'+
+                      '<button type="button" id="BotonEliminarCultivos" style="width: 200px; margin-top:10px" onclick="EliminarCultivosBD('+item.idAgenda+')" class="btn btn-danger">Eliminar Cultivo</button>'+
+                    '</div>'+
+
+                  '</div>'+
+              */
+
+        '</div>'+
+      '</div>'+
+    '</div>'
+
+      );
+
+  });
+}
+
+// Feaking an ajax response...
+success(data);
+
+ })
+        .fail(function() {
+          //alertify.error("Usuario no Existe");
+          })
+      });
+
+//FIN LISTAR CULTIVOS  REGION ORINOQUIA -------ACORDEON DYNAMICAS------------------------------------------------
+
+
+ //LISTAR CULTIVOS REGION PACIFICA-------ACORDEON DYNAMICAS-----------------------------------------------
+
+    var  idUsuario=sessionStorage.getItem("1");
+    var  password=sessionStorage.getItem("2");
+    var idRegionPacifica='5';
+
+var result="";
+$(function(){
+        $.getJSON(CultivosRecomendadosPacifica+idRegionPacifica,function(data){
+
+          var data = {
+  items:data};
+
+var success = function(data) {
+  data.items.forEach(function(item,index) {
+    $('.cultivosRegionPacifica').append(
+    '<div class="card">'+
+      '<div class="card-header" id="heading_P'+index+'">'+
+        '<h5 class="mb-0">'+
+        '<button class="btn btn-link" data-toggle="collapse" data-target="#collapse_P'+index+'" aria-expanded="true" aria-controls="collapse_P'+index+'">'+
+          "Nombre del Cultivo: "+item.nombreCultivo+""+
+        '</button>'+
+      '</h5>'+
+      '</div>'+
+      '<div id="collapse_P'+index+'" class="collapse" aria-labelledby="heading_P'+index+'" data-parent="#accordion">'+
+        '<div class="card-body">'+
+           '<div class="form-row">'+
+             '<div class="col" id="idPacificaExp'+item.idCultivo+'">'+
+                '<strong><label >Descripción: </label></strong>'+
+                " "+item.descripcion+'<hr>'+
+                '<h6 style="text-align:center">EXPERIENCIAS CON ESTE CULTIVO:</h6> <hr>'+
+
+                CultivoDetalle(item.idCultivo,5)
+
+                +
+              '</div>'+
+              
+            '</div>'+
+
+                   '<hr>'+
+              /*    '<div class="form-row">'+
+
+                    '<div class="col-sm-6 col-lg-6 col-xl-6 col-xs-12" style="text-align:center">'+
+                      '<button type="button" style="width: 200px; margin-top:10px" id="BotonEditarCultivos" onclick="EditarCultivosBD('+item.idUsuario+')" class="btn btn-warning ">Editar Cultivo</button>'+
+                    '</div>'+
+
+                    '<div class="col-sm-6 col-lg-6 col-xl-6 col-xs-12" style="text-align:center">'+
+                      '<button type="button" id="BotonEliminarCultivos" style="width: 200px; margin-top:10px" onclick="EliminarCultivosBD('+item.idAgenda+')" class="btn btn-danger">Eliminar Cultivo</button>'+
+                    '</div>'+
+
+                  '</div>'+
+*/
+        '</div>'+
+      '</div>'+
+    '</div>'
+
+      );
+
+  });
+}
+
+// Feaking an ajax response...
+success(data);
+
+ })
+        .fail(function() {
+          //alertify.error("Usuario no Existe");
+          })
+      });
+
+//FIN LISTAR CULTIVOS  REGION PACIFICA -------ACORDEON DYNAMICAS------------------------------------------------
+
+
+function agregarCultivoSuper(){
+
+  var idRegion=$('#txtRegionNuevo').val();
+
+  switch(idRegion){
+    case 'amazonas': enviarCultivoSuper('1'); break;
+    case 'andina': enviarCultivoSuper('2'); break;
+    case 'caribe': enviarCultivoSuper('3'); break;
+    case 'orinoquia': enviarCultivoSuper('4'); break;
+    case 'pacifica': enviarCultivoSuper('5'); break;
+    default : alertify.error("no selecciono una region.."); break;
+
+  }
+
+}
+
+function enviarCultivoSuper(region){
+   datos={
+    idUsuario:sessionStorage.getItem('1'),
+    nombreCultivo:$('#txtNombreCultivoNuevo').val(),
+    descripcion:$('#txtDescripcionNuevo').val(),
+    idRegion:region
+  } 
+
+    $.ajax({
+      type:'POST',
+      url:agregarCultivosSuper,
+      data: datos,
+      success: function(msg){
+        if(msg){
+          location.reload(true);
+           alertify.success("Operación Exitosa :)");
+
+        }
+      },
+      error:function(){
+        alertify.error("Operación Fallida :(");
+      }
+
+});
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

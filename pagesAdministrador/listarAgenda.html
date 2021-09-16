@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- NO CACHE EN LOS BUSCADORES !-->
+        <meta charset="utf-8">     
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="Last-Modified" content="0">
+        <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+
+  <!-- LIBRERIAS BOOTSTRAP !-->
+    <script src="../framework/bootstrap/js/jquery-3.3.1.min.js"></script>
+      <script src="../framework/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../framework/bootstrap/css/bootstrap.min.css">
+  <script src="../framework/bootstrap/js/popper.min.js"></script>
+
+  <script src="../framework/alertifyjs/alertify.js"></script>
+  <link rel="stylesheet" type="text/css" href="../framework/alertifyjs/css/alertify.css">
+  <link rel="stylesheet" type="text/css" href="../framework/alertifyjs/css/themes/default.css">
+
+	<!-- <script src='framework/fullcalendar/lib/jquery.min.js'></script> -->
+	<script src='../framework/fullcalendar/lib/moment.min.js'></script>
+	<script src='../framework/fullcalendar/fullcalendar.min.js'></script>
+	<link rel='stylesheet' href='../framework/fullcalendar/fullcalendar.min.css' />
+  <script src='../framework/fullcalendar/es.js'></script>
+
+  <script src='../framework/bootstrap/js/bootstrap-clockpicker.js'></script>
+  <link rel="stylesheet" href="../framework/bootstrap/css/bootstrap-clockpicker.css">
+
+  <link rel="stylesheet" href="../css/footer.css">
+<script src='../js/datos.js'></script>
+
+     <!-- Custom styles for this template -->
+    <link href="../css/one-page-wonder.min.css" rel="stylesheet">
+    <script src='../js/url_BD.js'></script>
+
+	<style>
+  .bg-1 { 
+      background-color: #1abc9c;
+      color: #ffffff;
+  }
+  .bg-2 { 
+      background-color: #474e5d;
+      color: #ffffff;
+  }
+  .bg-3 { 
+      background-color: #ffffff;
+      color: #555555;
+  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+  }
+   /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
+    .fc th{
+    padding: 10px 0px;
+    vertical-align: middle;
+    background: #F2F2F2;
+    width: 3px;
+    height: 2px;
+  }
+    .fc td{
+    width: 3px;
+    height: 3px;
+  }
+  </style>
+
+
+
+	<title>Agro Agenda</title>
+</head>
+<body>
+
+<!--MENU--------------------------------->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" >
+    <div class="container">
+  <a class="navbar-brand" href="index.html" >
+   <b> AGROAGENDA </b>
+  <!-- <img src="img/logo.png" alt="Los Angeles" width="1100" height="500"> -->
+  </a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+  <div class="navbar-collapse collapse" id="navbarResponsive" style="">
+   
+<ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html" id="Inicio">Inicio <span class="sr-only">(current)</span> </a>
+      </li>
+      
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administrador
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item " href="listarAgenda.html" id="Agenda">Agendas</a>
+          <a class="dropdown-item " href="gestionarUsuario.html" id="gestionarUsuario">Gestionar Usuario</a>
+          <a class="dropdown-item " href="gestionarExperiencias.html" id="gestionarExperiencias">Gestionar Experiencias</a>
+          <a class="dropdown-item " href="gestionarPlagas.php" id="gestionarPlagas">Gestionar Plagas</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="redSocial.html" id="redSocial">Red Social</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="../paginas/empresas.html" id="Empresas">Empresas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../paginas/contacto.html" id="Contacto">Contacto</a>
+      </li>  
+
+                  <li class="nav-item">
+              <a class="nav-link" href="../paginas/registroPublico.html" style="color: yellow" id="Registrarse">Registrarse</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../paginas/login.html" style="color: yellow" id="IniciarSesion">Iniciar Sesión</a>
+            </li> 
+            <li class="nav-item">
+              <button type="button" onclick="CerrarSesion()" class="btn btn-outline-light" id="CerrarSesion">Cerrar Sesión</button>
+            </li>  
+    </ul>
+  </div> 
+
+
+</div>
+</nav>
+<!--FIN MENU--------------------------------->
+
+
+
+<br><br><br>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1 style="text-align: center;">Mis Agendas</h1>  
+
+    <button type="button" onclick="$('#modalCrudAdministradorAgregar').modal();" id="agregarAgendaAdministrador" class="btn btn-success">Agregar Agenda</button><hr>
+    <div id="accordion" class="listadoAgendaAdministrador">
+
+
+
+    </div>    
+  </div>
+
+
+</div>
+
+
+
+<div class="container">
+  <div class="jumbotron">
+    <h1 style="text-align: center;">Agendas de los empleados</h1>  
+
+   <!-- <button type="button" id="agregarAgendaEmpleados" class="btn btn-success">Agregar Agenda</button><hr>  -->
+   <hr>
+    <div id="accordion" class="listadoAgendaEmpleado">
+
+
+
+    </div>    
+  </div>
+
+
+</div>
+
+
+<!-- Modal Modificar, -->
+      <div class="modal fade" id="modalCrudAdministrador" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tituloEventoModal">Editar Agenda</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: none;">
+                  Id: <input type="text" style="display: none;" id="txtIdAgenda" name="txtID"> <br/> 
+                </div>
+              
+              <form>
+                
+                  <div class="form-group">
+                    <label >Titulo:</label>
+                    <input type="text" id="txtTitulo" class="form-control validate" placeholder="Titulo de la actividad">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Comentario:</label>
+                    <textarea class="form-control"  id="txtDescripcion" rows="3"></textarea>
+                  </div>
+
+                </form>
+
+            </div>
+ 
+
+              <div class="modal-footer">
+                <button type="button" id="btnConfirmar" onclick="EnviarDatosAdministrador()" class="btn btn-success" >Confirmar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+          
+          </div>
+        </div>
+      </div>
+      <!-- FIN Modal Modal  Modificar,   -->
+
+
+
+<!-- Modal Agregar---------------, -->
+      <div class="modal fade" id="modalCrudAdministradorAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tituloEventoModal">Agregar Agenda</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: none;">
+                  Id: <input type="text" style="display: none;" id="txtIdAgenda" name="txtID"> <br/> 
+                </div>
+              
+              <form>
+                
+                  <div class="form-group">
+                    <label >Titulo:</label>
+                    <input type="text" id="txtTituloAgregar" class="form-control validate" placeholder="Titulo de la actividad">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Comentario:</label>
+                    <textarea class="form-control"  id="txtDescripcionAgregar" rows="3"></textarea>
+                  </div>
+
+                   <div class="form-row">
+                    <div class="col">
+                           <label for="sel1">Nombre de la Region:</label>
+                        <select style="height: 47px;" required="" class="form-control" id="txtRegionExp">
+                          <option value="0" selected="" disabled="">Seleccionar opción</option>
+                          <option value="1" >Región Amazonas</option>
+                          <option value="2" >Región Andina</option>
+                          <option value="3" >Región  Caribe</option>
+                          <option value="4" >Región Orinoquia</option>
+                          <option value="5" >Región Pacifica</option>
+                        </select>
+
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                           <label for="sel1">Nombre Cultivo:</label>
+                        <select style="height: 47px;" required="" class="form-control" id="txtNombreCultivoExp">
+                          <option value="" selected="" disabled="">Seleccione</option>
+                        </select>
+
+                    </div>
+                  </div>
+
+                </form>
+
+            </div>
+ 
+
+              <div class="modal-footer">
+                <button type="button" id="btnConfirmar" onclick="AgregarDatosAdministrador()" class="btn btn-success" >Confirmar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+          
+          </div>
+        </div>
+      </div>
+      <!-- FIN Modal Modal Agregar agenda,   -->
+
+
+      <!-- Modal agregar actividad---------------, -->
+      <div class="modal fade" id="modalAgregarActividad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tituloEventoModal">Agregar Actividad</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: none;">
+                  Id: <input type="text" style="display: none;" id="txtNombreAgenda" > <br/> 
+                </div>
+              
+              <form>
+                
+                  <div class="form-group">
+                    <label >Nombre de la Actividad:</label>
+                    <input type="text" id="txtNombreActividad" class="form-control validate" placeholder="Nombre de la actividad">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Descripcion:</label>
+                    <textarea class="form-control"  id="txtDescripcionActividad" rows="3"></textarea>
+                  </div>
+
+                </form>
+
+            </div>
+ 
+
+              <div class="modal-footer">
+                <button type="button" id="btnConfirmarActividad" onclick="AgregarActividades()" class="btn btn-success" >Confirmar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+          
+          </div>
+        </div>
+      </div>
+      <!-- FIN Modal Modal Agregar,   -->
+
+       <!-- Modal Agregar Retroalimentacion---------------, -->
+      <div class="modal fade" id="modalObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tituloEventoModal">Agregar Observación</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div style="display: none;">
+                  Id: <input type="text" style="display: none;" id="txtIdObservacion" name="txtID"> <br/> 
+                </div>
+              
+              <form>
+                
+                  <div class="form-group">
+                    <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Observacion:</label>
+                    <textarea class="form-control"  id="txtObservacion" rows="3"></textarea>
+                  </div>
+                  </div>
+
+                </form>
+
+            </div>
+ 
+
+              <div class="modal-footer">
+                <button type="button" id="btnConfirmar" onclick="enviarComentario()" class="btn btn-success" >Confirmar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              </div>
+          
+          </div>
+        </div>
+      </div>
+      <!-- FIN Modal Modal Agregar Retroalimentacion,   -->
+
+ 
+ <!-- FOOTER ----------------   --> 
+<footer class="footer">
+  <div class="container text-center">
+  <p class="text-xs-center" > 
+
+  </p>
+  </div>
+</footer>
+
+<footer class="mainfooter" role="contentinfo">
+  
+  <div class="footer-middle">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Dirección</h4>
+          <address>
+                <ul class="list-unstyled">
+                  <li>
+                    Sincelejo (Sucre)<br>
+                    212  Street<br>
+                    Lawoma<br>
+                    735<br>
+                  </li>
+                  <li>
+                    Phone: 0
+                  </li>
+                </ul>
+              </address>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Popular Services</h4>
+          <ul class="list-unstyled">
+            <li><a href="#"></a></li>
+            <li><a href="#">Payment Center</a></li>
+            <li><a href="#">Contact Directory</a></li>
+            <li><a href="#">Forms</a></li>
+            <li><a href="#">News and Updates</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div class="footer-pad">
+          <h4>Website Information</h4>
+          <ul class="list-unstyled">
+            <li><a href="#">Website Tutorial</a></li>
+            <li><a href="#">Accessibility</a></li>
+            <li><a href="#">Disclaimer</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Webmaster</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <!--Column1-->
+        <div  class="footer-pad">
+          <h4>Popular Departments</h4>
+          <ul class="list-unstyled">
+            <li><a href="#">Parks and Recreation</a></li>
+            <li><a href="#">Public Works</a></li>
+            <li><a href="#" >Police Department</a></li>
+            <li><a href="#">Fire</a></li>
+            <li><a href="#">Mayor and City Council</a></li>
+            <li>
+              <a href="#"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!--<div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+         
+          <p class="text-xs-center" >&copy; Copyright 2018 - CECAR.  Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</footer>
+
+<footer class="footer">
+  <div class="container text-center">
+  <p class="text-xs-center" >&copy; Copyright 2018 - AGROAGENDA.  Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- FIN FOOTER -----------------------------------------------------------   -->
+
+<script >
+
+
+  stylosSesiones();
+  document.getElementById('Agenda').style.display=agenda;
+  document.getElementById('Registrarse').style.display=registrarse;
+  document.getElementById('IniciarSesion').style.display=iniciarSesion;
+  document.getElementById('CerrarSesion').style.display=cerrarSesion;
+  document.getElementById('navbarDropdown').style.display=menuAdministrador;
+  
+  if(sessionStorage.getItem('3')=="administrador"){
+    }else if(sessionStorage.getItem('3')=="trabajador"){
+        window.location.href="../index.html";
+    }else{
+      window.location.href="../index.html";
+    }
+
+ 
+  //LISTAR AGENDAS EMPLEADOS-------ACORDEON DYNAMICAS------------------------------------------------
+
+  //ENVIAR INFORMACION A LA BASE DE DATOS
+
+    var  idUsuario=sessionStorage.getItem("1");
+    var  password=sessionStorage.getItem("2");
+  
+
+   var result="";
+   $(function(){
+        $.getJSON(AgendasEmpleadosBD+idUsuario+'&password='+password,function(data){                 
+        
+          
+          var data = {
+  items:data};
+
+var success = function(data) {
+  data.items.forEach(function(item,index) {
+     $('.listadoAgendaEmpleado').append(
+          '<div class="card">'+
+      '<div class="card-header">'+
+        '<a class="card-link" data-toggle="collapse" href="#collapse_'+index+'">'+
+          item.NombreAgenda+
+        '</a>'+
+      '</div>'+
+      '<div id="collapse_'+index+'" class="collapse" data-parent="#accordion">'+
+        '<div class="card-body">'+
+                    '<div >'+
+                      '<strong><label >Comentario:</label></strong><br>'+
+                       item.Comentarios+
+                    '</div>'+
+                    '<hr>'+
+           '<div class="form-row">'+  
+
+                    '<div class="col">'+
+                      '<button type="button" onclick="mostrarCodigo('+item.idAgenda+')" class="btn btn-info ">Actividades Programadas</button>'+
+                    '</div>'+                      
+                    
+                    '<div class="col">'+
+                      '<button type="button" onclick="EditarAgendaAdministrador(\''+item.idAgenda+'\',\''+item.NombreAgenda+'\',\''+item.Comentarios+'\')" class="btn btn-warning ">Editar Agenda</button>'+
+                    '</div>'+ 
+                    '<div class="col">'+
+                      '<button type="button" onclick="EliminarDatosAdministrador('+item.idAgenda+')" class="btn btn-danger">Eliminar Agenda</button>'+
+                    '</div>'+
+                  '</div>'+
+                  '<hr>'+
+                  '<h6 style="text-align:center">ACTIVIDADES:</h6> <hr>'+'<div id="'+item.idAgenda+'"></div>'+ListarActividades(item.idAgenda) +'</div>'+
+      '</div>'+
+    '</div>'
+
+      );
+  });
+}
+
+      // Feaking an ajax response...
+      success(data);
+          
+          
+        })
+        .fail(function() {
+          //alertify.error("Usuario no Existe AQUI");
+          })
+      });
+
+//FIN  LISTAR AGENDAS EMPLEADOS-------ACORDEON DYNAMICAS------------------------------------------------
+
+
+
+ //LISTAR AGENDAS ADMINISTRADOR-------ACORDEON DYNAMICAS------------------------------------------------
+
+  //ENVIAR INFORMACION A LA BASE DE DATOS
+
+    var  idUsuario=sessionStorage.getItem("1");
+    var  password=sessionStorage.getItem("2");
+  
+
+   var result="";
+   $(function(){
+        $.getJSON(AgendasAdministradorBD+idUsuario+'&password='+password,function(data){                 
+          
+          var data = {
+  items:data};
+
+var success = function(data) {
+  data.items.forEach(function(item,index) {
+    $('.listadoAgendaAdministrador').append(
+          '<div class="card">'+
+      '<div class="card-header">'+
+        '<a class="card-link" data-toggle="collapse" href="#collapse'+index+'">'+
+          item.NombreAgenda+
+        '</a>'+
+      '</div>'+
+      '<div id="collapse'+index+'" class="collapse" data-parent="#accordion">'+
+        '<div class="card-body">'+
+                    '<div >'+
+                      '<strong><label >Comentario:</label></strong><br>'+
+                       item.Comentarios+
+                    '</div>'+
+                    '<hr>'+
+           '<div class="form-row">'+
+                    
+                   '<div class="col">'+
+                      '<button type="button" onclick="modalAgregarActividad(\''+item.NombreAgenda+'\')" class="btn btn-success ">Agregar Actividad</button>'+
+                    '</div>'+  
+
+                    '<div class="col">'+
+                      '<button type="button" onclick="mostrarCodigo('+item.idAgenda+')" class="btn btn-info ">Actividades Programadas</button>'+
+                    '</div>'+                      
+                    
+                    '<div class="col">'+
+                      '<button type="button" onclick="EditarAgendaAdministrador(\''+item.idAgenda+'\',\''+item.NombreAgenda+'\',\''+item.Comentarios+'\')" class="btn btn-warning ">Editar Agenda</button>'+
+                    '</div>'+ 
+                    '<div class="col">'+
+                      '<button type="button" onclick="EliminarDatosAdministrador('+item.idAgenda+')" class="btn btn-danger">Eliminar Agenda</button>'+
+                    '</div>'+
+                  '</div>'+
+                  '<hr>'+
+                  '<h6 style="text-align:center">ACTIVIDADES:</h6> <hr>'+'<div id="'+item.idAgenda+'"></div>'+                
+                ListarActividades(item.idAgenda)+'</div>'+
+      '</div>'+
+    '</div>'
+
+      );
+  });
+}
+
+      // Feaking an ajax response...
+      success(data);
+          
+          
+        })
+        .fail(function() {
+          //alertify.error("Usuario no Existe");
+          })
+      });
+
+//FIN  LISTAR AGENDAS administrador-------ACORDEON DYNAMICAS------------------------------------------------
+
+function mostrarCodigo(codigo){
+  sessionStorage.setItem("4",codigo);
+window.location.href="../pagesAdministrador/agenda.html";
+}
+
+function EditarAgendaAdministrador(idAgenda,NombreAgenda,Comentarios){
+  //alert(idAgenda+" "+NombreAgenda+" "+Comentarios);
+  $('#modalCrudAdministrador').modal();
+  $('#txtIdAgenda').val(idAgenda);
+  $('#txtTitulo').val(NombreAgenda);
+  $('#txtDescripcion').val(Comentarios);
+  
+}
+
+function EnviarDatosAdministrador(){
+
+   NuevoEvento = {
+      idAgenda:$('#txtIdAgenda').val(),
+      nombreAgenda:$('#txtTitulo').val(),
+      comentario:$('#txtDescripcion').val()
+    };
+
+//ACTUALIZAR AGENDA
+    $.ajax({
+      type:'POST',
+      url:ActualizarAgendaBD,
+      data: NuevoEvento,
+      success: function(msg){
+        if(msg){         
+           alertify.success("Operación Exitosa :)");
+           location.reload(true);
+        }
+      },
+      error:function(){
+        alertify.error("Operación Fallida :(");
+      }
+
+    });
+}
+
+function EliminarDatosAdministrador(idAgenda){
+  NuevoEvento = {
+      idAgenda:idAgenda
+    };
+
+//ELIMINAR AGENDA BD
+  $.ajax({
+      type:'POST',
+      url:EliminarAgendaBD,
+      data: NuevoEvento,
+      success: function(msg){
+        if(msg){         
+          
+           alertify.success("Operación Exitosa :)");
+           location.reload(true);
+        }
+      },
+      error:function(){
+        alertify.error("Operación Fallida :(");
+      }
+
+    });
+}
+
+function AgregarDatosAdministrador(){
+   NuevoEvento = {
+    idUsuario:sessionStorage.getItem('1'),
+    password:sessionStorage.getItem('2'),
+      nombreAgenda:$('#txtTituloAgregar').val(),
+      comentario:$('#txtDescripcionAgregar').val(),
+      idCultivo:$('#txtNombreCultivoExp').val()
+    };
+
+//CREAR AGENDA BD
+     $.ajax({
+      type:'POST',
+      url:CrearAgendaBD,
+      data: NuevoEvento,
+      success: function(msg){
+        if(msg){         
+          //location.reload(true);
+           alertify.success("Operación Exitosa :)");
+           location.reload(true);
+        }
+      },
+      error:function(){
+        alertify.error("Operación Fallida :(");
+      }
+
+    });
+}
+
+
+function modalAgregarActividad(nombreAgenda){
+$('#txtNombreAgenda').val(''+nombreAgenda);
+$('#modalAgregarActividad').modal();
+
+}
+
+
+//------------------------------------------
+function LlenarSelectCultivos(idRegion){
+
+
+      //LLENAR LOS SELECT DEL NOMBRE DE CULTIVOS PARA LAS EXPERIENCIAS    
+             $(function() {
+               $('#txtNombreCultivoExp').empty();
+               $('#txtNombreCultivoExp').append('<option value="" selected="" disabled=""> Seleccione </option>');
+
+
+                $.getJSON(ConsultarCultivosBDD+idRegion, function(data) {
+
+                  for (var i = 0; i < data.length; i++) {
+                  //  $('#traer').append(data[i].nombre + '</br>');
+
+                    $('#txtNombreCultivoExp').append('<option value="' + data[i].idCultivo + '">' + data[i].nombreCultivo + '</option>');
+                  }
+                })
+                .fail(function(){
+                  alertify.error('Región sin cultivos');
+                })
+              });
+//////////////////////////////////////////////
+}
+
+//SELECCIONAR REGIONES Y LLENAR SELECT DE CULTIVOS
+$(document).ready(function() {
+    $("#txtRegionExp").change(function() {
+
+ LlenarSelectCultivos($('#txtRegionExp').val());
+    });
+});
+
+//LLENAR LOS INPUT  DESCRIPCION  EL SELECT DE NOMBRE DEL CULTIVO
+$(document).ready(function() {
+    $("#txtNombreCultivoExp").change(function() {
+  $("#txtDescripcionExp").empty();
+  $.getJSON(ConsultarDescripcion+$("#txtNombreCultivoExp").val(),function(data){
+    //console.log(data[0]);
+    
+    $('#txtDescripcionExp').append(data[0].descripcion);
+    //$('#txtRegionExp').val(data[0].region);
+
+  });
+    });
+});
+//----/////////////////////////FIN LLENAR INPUT///////////////
+
+
+function AgregarActividades(){
+
+    var nombreAgenda = $('#txtNombreAgenda').val();      
+
+//CREAR AGENDA BD
+  $.getJSON(consultarCodigoAgenda+sessionStorage.getItem('1')+'&nombreAgenda='+nombreAgenda, function(data) {
+
+                  NuevoEvento = {
+    idUsuario:sessionStorage.getItem('1'),
+    nombreActividad:$('#txtNombreActividad').val(),
+      descripcionActividad:$('#txtDescripcionActividad').val(),
+      idAgenda:data[0].idAgenda
+    };
+
+//CREAR AGENDA BD
+     $.ajax({
+      type:'POST',
+      url:agregarActividad,
+      data: NuevoEvento,
+      success: function(msg){
+        if(msg){         
+          //location.reload(true);
+           alertify.success("Operación Exitosa :)");
+           location.reload(true);
+        }
+      },
+      error:function(){
+        alertify.error("Operación Fallida :(");
+      }
+
+    });
+
+
+                })
+                .fail(function(){
+                  alertify.error('Error Al Contultar');
+                })
+}
+//---------------FIN AGREGAR ACTIVIDADES
+
+
+//LISTAR ACTIVIDADES-------------------------------
+
+  function ListarActividades(divAgenda){
+
+                $.getJSON(consultarActividades+divAgenda, function(data) {
+
+                  for (var i = 0; i < data.length; i++) {
+               
+                  $('#'+divAgenda).append('<hr><div class="form-row " ><div class="col-sm-6"><h4>'+data[i].nombreActividad+'</h4></div><divclass="col-sm-6"><h4>'+data[i].descripcionActividad+'</h4></div><button class="btn btn-warning" style="margin-right:30px;" onclick=agregarComentario('+data[i].idActividad+')>Agregar Observacion</button><button class="btn btn-danger" onclick="eliminarActividad('+data[i].idActividad+')">Eliminar Actividad</button></div>');
+
+                    }
+
+                })
+                .fail(function(){
+                  //alertify.error('Error Al Contultar FOR');
+                });
+
+                return "";
+
+
+}
+//FIN LISTAR ACTIVIDADES
+
+
+
+
+function agregarComentario(idActividad){
+
+  $('#txtIdObservacion').val(idActividad);
+  $('#modalObservacion').modal();
+
+}
+////////////////////////////////////////////////////////////
+
+
+///////// AGREGAR COMEBTARIOS POR ACTIVIDADES (ENVIAR LA CONSULTA) /////////////
+
+function enviarComentario(){
+
+    NuevoEvento = {
+    idUsuario:sessionStorage.getItem('1'),
+    idActividad:$('#txtIdObservacion').val(),
+    descripcion:$('#txtObservacion').val()
+    };
+
+//CREAR AGENDA BD
+     $.ajax({
+      type:'POST',
+      url:agregarRetroalimentacion,
+      data: NuevoEvento,
+      success: function(msg){
+        if(msg){         
+          //location.reload(true);
+           alertify.success("Operación Exitosa :)");
+           location.reload(true);
+        }
+      },
+      error:function(){
+        alertify.error("Operación Fallida :(");
+      }
+
+    });
+
+}
+////////////////////////////////////////////////////////////
+
+
+/////////////// ELIMINAR ACTIVIDADES ///////////////////////////
+function eliminarActividad(idActividad){
+
+   NuevoEvento = {
+    idActividad:idActividad
+    };
+
+//CREAR AGENDA BD
+     $.ajax({
+      type:'POST',
+      url:eliminarActividades,
+      data: NuevoEvento,
+      success: function(msg){
+        if(msg){         
+          //location.reload(true);
+           alertify.success("Operación Exitosa :)");
+           location.reload(true);
+        }
+      },
+      error:function(){
+        alertify.error("Operación Fallida :(");
+      }
+
+    });
+
+}
+
+
+</script>
+
+
+  </div>
+
+</body>
+</html>
